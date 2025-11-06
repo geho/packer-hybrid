@@ -1,0 +1,35 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Editor swap/backup files
+*.swp
+*.swo
+*.bak
+
+# macOS
+.DS_Store
+
+# Python tooling caches
+.mypy_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Wizard state
+.wizard/
+
+# Logs
+*.log
+
+# Local OpenSpec archives or generated backups
+*.backup-*
+
+# Codex session notes
+codex-session-*.txt
