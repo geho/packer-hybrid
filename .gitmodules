@@ -1,0 +1,12 @@
+[submodule "sources/proxmox-packer-examples"]
+	path = sources/proxmox-packer-examples
+	url = https://github.com/ajschroeder/proxmox-packer-examples.git
+[submodule "sources/packer-examples-for-vsphere"]
+	path = sources/packer-examples-for-vsphere
+	url = https://github.com/vmware/packer-examples-for-vsphere.git
+[submodule "sources/packer-plugin-vsphere"]
+	path = sources/packer-plugin-vsphere
+	url = https://github.com/hashicorp/packer-plugin-vsphere.git
+[submodule "sources/packer-plugin-proxmox"]
+	path = sources/packer-plugin-proxmox
+	url = https://github.com/hashicorp/packer-plugin-proxmox.git
