@@ -1,0 +1,1 @@
+/prompts:openspec-proposal Puppet provisioner abstraction: Describe how packer-hybrid toggles between Ansible and masterless Puppet, including template updates, CLI flags, validation, templates/puppet layout, state tracking, and migration steps from today’s Ansible-first workflow. Highlight risks (module size, execution time) and required tests.

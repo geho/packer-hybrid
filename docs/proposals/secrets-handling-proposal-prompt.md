@@ -1,0 +1,1 @@
+/prompts:openspec-proposal Secrets & IAM handling: Detail how credentials and sensitive config are stored (env vars, secret manager paths, encrypted files), required IAM scopes per platform, detection of leaked secrets, and developer workflow for rotating or testing with dummy data.

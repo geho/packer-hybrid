@@ -1,0 +1,1 @@
+/prompts:openspec-proposal Templates & provisioning structure: Capture the multi-cloud repo layout (common/platform HCL, vars, scripts, configs, artifacts, state), provisioning assets (Ansible default, optional Puppet), validation rules, manifest/drift checks, and how new OS/platform additions extend the structure while honoring security policies.

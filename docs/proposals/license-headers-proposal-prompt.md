@@ -1,0 +1,1 @@
+/prompts:openspec-proposal License header convention: Define the exact SPDX header template (lines, ordering of SPDX, copyright, timestamp, spec/diagram references) required at the top of every executable Python file and explain automation/testing to enforce it.

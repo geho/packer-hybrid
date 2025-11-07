@@ -1,0 +1,1 @@
+/prompts:openspec-proposal Spec migration plan: Outline how to migrate the remaining guidance in openspec/project.md and docs/drafts/InitialIdeas.md into dedicated specs under openspec/specs/ (CLI, hybridcore, templates, provisioning, security). Define sequencing, ownership, review expectations, and acceptance criteria for retiring the temporary draft.
