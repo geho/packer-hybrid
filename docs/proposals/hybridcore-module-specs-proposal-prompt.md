@@ -4,5 +4,5 @@
 Prompt-Source: docs/proposals/hybridcore-module-specs-proposal-prompt.md
 Reference: [specs/hybridcore/spec.md](openspec/specs/hybridcore/spec.md)
 Change-Start: add-hybridcore-module-specs 2025-11-08T20:30:00Z
-Change-Archived: PENDING
+Change-Archived: add-hybridcore-module-specs 2025-11-08T20:15:47Z
 -->
