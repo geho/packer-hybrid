@@ -13,3 +13,7 @@ CLI -> hybridcore.sources -> hybridcore.packer -> hybridcore.state/logs
 ```
 
 Consult the spec for full Mermaid diagrams and scenarios. Reference: [specs/hybridcore/spec.md](openspec/specs/hybridcore/spec.md).
+
+## Logging Bootstrap Flow
+
+For troubleshooting log initialization, see the dedicated diagram in [specs/hybridcore-logs/logging-bootstrap.md](openspec/specs/hybridcore-logs/logging-bootstrap.md). It illustrates how `init_logging` loads thresholds, attaches console/file handlers, registers CLI/pytest hooks, and streams artifacts to CI.

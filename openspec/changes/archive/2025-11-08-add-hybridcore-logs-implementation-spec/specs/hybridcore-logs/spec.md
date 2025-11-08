@@ -1,10 +1,4 @@
-# hybridcore-logs Specification
-
-## Purpose
-
-Outline the logging interface shared across CLI/tests, including formatting, rotation, and redaction, as part of the hybridcore umbrella. Reference: [specs/hybridcore/spec.md](openspec/specs/hybridcore/spec.md)
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Logger Interface
 
@@ -33,14 +27,7 @@ The call + filtering sequence is illustrated in `specs/hybridcore-logs/context-f
 - **WHEN** `log_command_start(ctx, command="packer build")` is invoked with `ctx.command_id="1234"`
 - **THEN** every emitted line MUST include `command_id=1234` and any argument containing secrets (e.g., `--token`) MUST be replaced with `***`.
 
-### Requirement: Testing
-
-Unit tests SHALL verify formatting, rotation triggers, and redaction behavior. Integration tests SHALL run sample CLI commands and assert that log files contain the expected structure without secrets.
-
-#### Scenario: Rotation test
-
-- **WHEN** log size exceeds the configured threshold
-- **THEN** tests MUST confirm a new file is created and the old one archived per policy.
+## ADDED Requirements
 
 ### Requirement: Observability & CI Artifacts
 
