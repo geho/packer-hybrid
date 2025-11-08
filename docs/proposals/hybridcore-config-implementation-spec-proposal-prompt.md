@@ -4,11 +4,12 @@
 - Describe the exact file/dir layout, naming, and hashing rules for generated vars plus how secrets use indirection (`env()`, vault paths) without ever writing cleartext.
 - Define cross-module integrations (state snapshots, templates, packer, provisioners) and the regression-testing surface: golden fixtures, hash comparisons, and negative coverage for overlay conflicts.
 - Provide implementation-ready checklists for new inputs (schema patching, docs, automated tests) and outline extendability rules for future environments/platforms.
-  References: [openspec/specs/hybridcore-config/spec.md](openspec/specs/hybridcore-config/spec.md), [openspec/specs/hybridcore/spec.md](openspec/specs/hybridcore/spec.md)
+  - Reference diagrams: [config pipeline](openspec/specs/hybridcore-config/config-pipeline.md), [module integrations](openspec/specs/hybridcore-config/config-integrations.md), [extendability workflow](openspec/specs/hybridcore-config/config-extendability.md).
+    References: [openspec/specs/hybridcore-config/spec.md](openspec/specs/hybridcore-config/spec.md), [openspec/specs/hybridcore/spec.md](openspec/specs/hybridcore/spec.md)
 
 <!--
 Prompt-Source: docs/proposals/hybridcore-config-implementation-spec-proposal-prompt.md
 Reference: [openspec/specs/hybridcore-config/spec.md](openspec/specs/hybridcore-config/spec.md)
-Change-Start: PENDING
-Change-Archived: PENDING
+Change-Start: add-hybridcore-config-implementation-spec 2025-11-08T22:00:00Z
+Change-Archived: add-hybridcore-config-implementation-spec 2025-11-08T22:16:38Z
 -->

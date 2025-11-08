@@ -1,10 +1,4 @@
-# hybridcore-config Specification
-
-## Purpose
-
-Detail the data contracts, inputs/overlays, and testing expectations for `hybridcore.config`, extending the umbrella hybridcore spec. Reference: [specs/hybridcore/spec.md](openspec/specs/hybridcore/spec.md)
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Config Inputs & Overlays
 
@@ -38,14 +32,7 @@ Rendered vars MUST follow this structure:
 - **WHEN** `PROXMOX_TOKEN` is required
 - **THEN** the vars file MUST contain `env("PROXMOX_TOKEN")`, reference the secret doc in a comment, and the manifest MUST record the hash without storing cleartext.
 
-### Requirement: Testing
-
-`hybridcore-config` SHALL provide unit tests covering schema validation, overlay precedence, and deterministic output (e.g., hash comparisons). CI MUST run these tests before merging.
-
-#### Scenario: Regression prevention
-
-- **WHEN** a contributor modifies overlay logic
-- **THEN** the associated unit tests MUST catch ordering regressions by comparing rendered files against golden fixtures.
+## ADDED Requirements
 
 ### Requirement: Cross-Module Integrations & Regression Tests
 

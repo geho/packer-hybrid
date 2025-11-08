@@ -17,3 +17,7 @@ Consult the spec for full Mermaid diagrams and scenarios. Reference: [specs/hybr
 ## Logging Bootstrap Flow
 
 For troubleshooting log initialization, see the dedicated diagram in [specs/hybridcore-logs/logging-bootstrap.md](openspec/specs/hybridcore-logs/logging-bootstrap.md). It illustrates how `init_logging` loads thresholds, attaches console/file handlers, registers CLI/pytest hooks, and streams artifacts to CI.
+
+## Config Pipeline Overview
+
+The end-to-end configuration pipeline (input discovery → schema validation → deterministic merge → render → state manifest updates) is captured in [specs/hybridcore-config/config-pipeline.md](openspec/specs/hybridcore-config/config-pipeline.md). Use this when debugging overlay precedence, unused key warnings, or manifest drift.
