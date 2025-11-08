@@ -4,5 +4,5 @@
 Prompt-Source: docs/proposals/cli-structure-proposal-prompt.md
 Reference: [specs/cli/spec.md](openspec/specs/cli/spec.md)
 Change-Start: add-cli-structure-workflow 2025-11-08T19:10:00Z
-Change-Archived: PENDING
+Change-Archived: add-cli-structure-workflow 2025-11-08T19:25:00Z
 -->
