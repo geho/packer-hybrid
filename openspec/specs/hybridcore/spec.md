@@ -169,3 +169,21 @@ sequenceDiagram
   PKR->>ST: update state metadata
 ```
 
+### Requirement: Module Spec Hierarchy
+
+This umbrella spec SHALL remain the high-level description of hybridcore. Detailed contracts for each module MUST live in sibling specs:
+
+- `specs/hybridcore-config/spec.md`
+- `specs/hybridcore-sources/spec.md`
+- `specs/hybridcore-templates/spec.md`
+- `specs/hybridcore-provisioners/spec.md`
+- `specs/hybridcore-packer/spec.md`
+- `specs/hybridcore-state/spec.md`
+- `specs/hybridcore-logs/spec.md`
+
+Each module spec MUST link back to this umbrella file and describe its own data contracts, serialization formats, dependency boundaries, and testing strategy.
+
+#### Scenario: Adding a new module
+
+- **WHEN** a new hybridcore module (e.g., `metrics`) is introduced
+- **THEN** contributors MUST create `specs/hybridcore-metrics/spec.md`, reference it from this umbrella spec, and follow the naming convention `hybridcore-<module>`.
