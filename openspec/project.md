@@ -19,7 +19,7 @@
 
 ## Project Conventions
 
-Refer to `openspec/specs/governance/spec.md` for repository-wide policies covering diagram storage/linking, documentation lifecycle, prompt traceability, and git-tracked vs generated assets.
+Refer to `openspec/specs/governance/spec.md` for repository-wide policies covering diagram storage/linking, documentation lifecycle, prompt traceability, git-tracked vs generated assets, and the code-comment/docstring guidelines enforced across modules.
 
 ### Code Style
 
