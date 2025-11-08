@@ -1,8 +1,11 @@
 # hybridcore-provisioners Specification
 
 ## Purpose
-TBD - created by archiving change add-hybridcore-module-specs. Update Purpose after archive.
+
+Document how `hybridcore.provisioners` toggles Ansible/Puppet stacks, validates assets, and emits vars, anchored to the umbrella hybridcore spec. Reference: [specs/hybridcore/spec.md](openspec/specs/hybridcore/spec.md)
+
 ## Requirements
+
 ### Requirement: Provisioner Toggles
 
 `hybridcore-provisioners` SHALL expose APIs to enable/disable Ansible and Puppet stacks, ensuring required assets exist under `templates/ansible` or `templates/puppet`. Missing assets MUST raise descriptive errors.
@@ -29,4 +32,3 @@ Unit tests SHALL cover toggle logic, asset validation, and variable emission. In
 
 - **WHEN** tests run in puppet-enabled mode
 - **THEN** they MUST assert that packer validate references puppet manifests and that disabling Puppet removes those references.
-

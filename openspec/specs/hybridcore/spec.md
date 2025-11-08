@@ -1,8 +1,11 @@
 # hybridcore Specification
 
 ## Purpose
-TBD - created by archiving change refactor-misplaced-specs. Update Purpose after archive.
+
+Describe the hybridcore package architecture, module boundaries, and diagrams so CLI/Django consumers rely on a shared stdlib-only orchestration layer for config, sources, templates, provisioners, packer, state, and logs.
+
 ## Requirements
+
 ### Requirement: Module Boundaries
 
 `hybridcore` SHALL provide distinct stdlib-only modules for `config`, `sources`, `templates`, `provisioners`, `packer`, `state`, and `logs`.

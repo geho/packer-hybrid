@@ -1,8 +1,11 @@
 # hybridcore-packer Specification
 
 ## Purpose
-TBD - created by archiving change add-hybridcore-module-specs. Update Purpose after archive.
+
+Specify how `hybridcore.packer` wraps packer commands, enforces drift detection, and tests integrations, as a sibling spec to the hybridcore umbrella. Reference: [specs/hybridcore/spec.md](openspec/specs/hybridcore/spec.md)
+
 ## Requirements
+
 ### Requirement: Command Wrappers
 
 `hybridcore-packer` SHALL wrap `packer fmt`, `packer validate`, and `packer build`, providing structured results (status, stdout/stderr, artifacts). It MUST stream logs to `hybridcore.logs` while capturing manifests.
@@ -29,4 +32,3 @@ Unit tests SHALL mock packer subprocess calls to verify command invocation and e
 
 - **WHEN** `packer validate` returns exit code 1
 - **THEN** the module MUST surface the stderr and unit tests MUST assert that the error is propagated with context.
-

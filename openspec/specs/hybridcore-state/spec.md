@@ -1,8 +1,11 @@
 # hybridcore-state Specification
 
 ## Purpose
-TBD - created by archiving change add-hybridcore-module-specs. Update Purpose after archive.
+
+Describe how `hybridcore.state` stores JSON metadata, handles schema evolution, and provides read/write helpers aligned to the umbrella spec. Reference: [specs/hybridcore/spec.md](openspec/specs/hybridcore/spec.md)
+
 ## Requirements
+
 ### Requirement: Storage Format
 
 `hybridcore-state` SHALL persist JSON documents under `state/` capturing plugin versions, repo SHAs, manifests, and timestamps. Keys MUST be sorted and files written atomically using temp files + rename.
@@ -29,4 +32,3 @@ Unit tests SHALL simulate concurrent writes (using temp dirs) to confirm atomici
 
 - **WHEN** two writes happen back-to-back
 - **THEN** tests MUST verify the last write wins without partial files remaining.
-

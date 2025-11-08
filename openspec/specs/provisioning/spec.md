@@ -1,8 +1,11 @@
 # provisioning Specification
 
 ## Purpose
-TBD - created by archiving change refactor-misplaced-specs. Update Purpose after archive.
+
+Define provisioning expectations for the framework—Ansible-first workflows, optional Puppet support, validation, and shared scripts—so all platforms follow the same hardening model.
+
 ## Requirements
+
 ### Requirement: Ansible-First Provisioning
 
 Ansible (remote or local) SHALL be the default provisioning mechanism for all builders.
@@ -47,4 +50,3 @@ Scripts under `templates/scripts/{linux,windows}` SHALL be reusable across platf
 
 - **WHEN** both Proxmox and vSphere builders need the same hardening script
 - **THEN** they MUST reference the common script via `templatefile("templates/scripts/linux/hardening.sh", ...)` instead of duplicating content.
-

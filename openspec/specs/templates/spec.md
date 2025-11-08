@@ -1,8 +1,11 @@
 # templates Specification
 
 ## Purpose
-TBD - created by archiving change refactor-misplaced-specs. Update Purpose after archive.
+
+Define the multi-cloud template layout (common/platform HCL, vars, scripts, configs, artifacts, state) plus validation/drift rules so Proxmox, vSphere, and Azure builds stay aligned.
+
 ## Requirements
+
 ### Requirement: Repository Layout
 
 The repository SHALL follow a multi-cloud layout containing `templates/`, `configs/`, `sources/`, `artifacts/`, `logs/`, and `state/`.
@@ -93,4 +96,3 @@ The repository SHALL continue to use `artifacts/` (not `builds/`) for build outp
 
 - **WHEN** the CLI detects uncommitted template changes or state drift
 - **THEN** it MUST refuse to run `build`/`publish` until resolved.
-

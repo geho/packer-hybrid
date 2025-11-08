@@ -1,8 +1,11 @@
 # hybridcore-templates Specification
 
 ## Purpose
-TBD - created by archiving change add-hybridcore-module-specs. Update Purpose after archive.
+
+Capture the contracts for `hybridcore.templates`—builder inventory, composition outputs, and tests—while referencing the umbrella hybridcore spec. Reference: [specs/hybridcore/spec.md](openspec/specs/hybridcore/spec.md)
+
 ## Requirements
+
 ### Requirement: Builder Inventory
 
 `hybridcore-templates` SHALL expose APIs to list builders per OS/platform, validate naming conventions (`source.<plugin>-iso.<name>`, `source.azure-arm.<name>`), and map builders to their HCL files.
@@ -29,4 +32,3 @@ Unit tests SHALL cover builder validation, naming enforcement, and composition r
 
 - **WHEN** a builder is named `source.azurearm.bad`
 - **THEN** `hybridcore-templates` MUST raise a validation error and tests MUST assert the failure message references the naming rule.
-

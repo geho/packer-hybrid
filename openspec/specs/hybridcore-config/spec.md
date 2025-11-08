@@ -1,8 +1,11 @@
 # hybridcore-config Specification
 
 ## Purpose
-TBD - created by archiving change add-hybridcore-module-specs. Update Purpose after archive.
+
+Detail the data contracts, inputs/overlays, and testing expectations for `hybridcore.config`, extending the umbrella hybridcore spec. Reference: [specs/hybridcore/spec.md](openspec/specs/hybridcore/spec.md)
+
 ## Requirements
+
 ### Requirement: Config Inputs & Overlays
 
 `hybridcore-config` SHALL accept template defaults, environment overlays, and CLI-provided answers, merging them deterministically. Inputs MUST be validated against a schema before rendering `.auto.pkrvars.hcl`.
@@ -29,4 +32,3 @@ Rendered configs MUST be written as HCL with stable key ordering and comments po
 
 - **WHEN** a contributor modifies overlay logic
 - **THEN** the associated unit tests MUST catch ordering regressions by comparing rendered files against golden fixtures.
-

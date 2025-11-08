@@ -1,8 +1,11 @@
 # hybridcore-logs Specification
 
 ## Purpose
-TBD - created by archiving change add-hybridcore-module-specs. Update Purpose after archive.
+
+Outline the logging interface shared across CLI/tests, including formatting, rotation, and redaction, as part of the hybridcore umbrella. Reference: [specs/hybridcore/spec.md](openspec/specs/hybridcore/spec.md)
+
 ## Requirements
+
 ### Requirement: Logger Interface
 
 `hybridcore-logs` SHALL expose `get_logger(name)` returning a stdlib `logging.Logger` configured with a shared format (`[timestamp] level component message`) and rotating file handlers under `logs/`.
@@ -29,4 +32,3 @@ Unit tests SHALL verify formatting, rotation triggers, and redaction behavior. I
 
 - **WHEN** log size exceeds the configured threshold
 - **THEN** tests MUST confirm a new file is created and the old one archived per policy.
-

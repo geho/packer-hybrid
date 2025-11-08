@@ -1,8 +1,11 @@
 # hybridcore-sources Specification
 
 ## Purpose
-TBD - created by archiving change add-hybridcore-module-specs. Update Purpose after archive.
+
+Define how `hybridcore.sources` manages plugin/example repositories, metadata, and tests, building on the umbrella hybridcore spec. Reference: [specs/hybridcore/spec.md](openspec/specs/hybridcore/spec.md)
+
 ## Requirements
+
 ### Requirement: Repository Management
 
 `hybridcore-sources` SHALL clone, fetch, and pin plugin/example repositories under `sources/` using only git CLI commands. Dirty working trees or diverging SHAs MUST abort the operation with actionable errors.
@@ -29,4 +32,3 @@ Unit tests SHALL mock git commands to verify error handling, and integration tes
 
 - **WHEN** git returns a non-zero exit code
 - **THEN** tests MUST confirm that `hybridcore-sources` surfaces the stderr/stdout to the caller with context.
-

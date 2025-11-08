@@ -1,8 +1,11 @@
 # cli Specification
 
 ## Purpose
-TBD - created by archiving change refactor-misplaced-specs. Update Purpose after archive.
+
+Define the packer-hybrid CLI surface—commands, arguments, logging, wizard/TUI expectations, and the verification gates each command must enforce—so implementations across CLI and future UIs behave consistently.
+
 ## Requirements
+
 ### Requirement: Deterministic Command Surface
 
 The CLI SHALL expose the subcommands `init`, `sources sync`, `config`, `validate`, `build`, `publish`, `status`/`inspect`, `clean`, `diag`, and optional `wizard`/`tui`, each with stable semantics.
@@ -85,19 +88,19 @@ flowchart TD
 
 Each CLI command SHALL expose the arguments below and emit structured stdout/stderr describing actions taken; unrecognized flags MUST cause an error before any side effects.
 
-| Command | Required arguments | Key behaviours |
-| ------- | ------------------ | --------------- |
-| `init` | `--force` (optional) | Create templates/, configs/, artifacts/, logs/, state/ skeletons, clone sources if missing. |
-| `sources sync` | `--all` or `--plugin <name>` | Fetch/checkout plugin/example repos, update metadata in `state/sources.json`, refuse when working tree dirty. |
-| `config` | `--env <name>` `--targets <platforms>` `--from <answers.json>` | Render `.auto.pkrvars.hcl`, point secrets to env/secret manager, print generated files. |
-| `validate` | `--env <name>` `--targets <platforms>` `--os <ids>` | Run `packer fmt -check`, `packer validate`, surface per-target summaries, stop on first fatal error. |
-| `build` | `--env <name>` `--targets <platforms>` `--os <ids>` `--parallelism <n>` | Launch packer builds, stream logs, capture manifests, update `state/packer-hybrid.json`. |
-| `publish` | `--env <name>` `--targets <platforms>` | Perform template conversion/SIG replication only if manifests match templates, otherwise fail with drift warning. |
-| `status` | `--format {table,json}` | Show plugin versions, repo SHAs, manifest hashes, drift indicators. |
-| `inspect` | `--env <name>` `--os <ids>` | Output merged builder/provisioner configs for audit. |
-| `clean` | `--scope {work,artifacts,state}` `--yes` | Delete temporary files per scope, never touch templates without explicit flag. |
-| `diag` | `--output <path>` | Bundle logs, manifests, state snapshots. |
-| `wizard`/`tui` | `--mode {text,curses}` `--export <answers.json>` | Guide users through config/build flows, emitting the same files/commands as non-interactive mode. |
+| Command        | Required arguments                                                      | Key behaviours                                                                                                    |
+| -------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `init`         | `--force` (optional)                                                    | Create templates/, configs/, artifacts/, logs/, state/ skeletons, clone sources if missing.                       |
+| `sources sync` | `--all` or `--plugin <name>`                                            | Fetch/checkout plugin/example repos, update metadata in `state/sources.json`, refuse when working tree dirty.     |
+| `config`       | `--env <name>` `--targets <platforms>` `--from <answers.json>`          | Render `.auto.pkrvars.hcl`, point secrets to env/secret manager, print generated files.                           |
+| `validate`     | `--env <name>` `--targets <platforms>` `--os <ids>`                     | Run `packer fmt -check`, `packer validate`, surface per-target summaries, stop on first fatal error.              |
+| `build`        | `--env <name>` `--targets <platforms>` `--os <ids>` `--parallelism <n>` | Launch packer builds, stream logs, capture manifests, update `state/packer-hybrid.json`.                          |
+| `publish`      | `--env <name>` `--targets <platforms>`                                  | Perform template conversion/SIG replication only if manifests match templates, otherwise fail with drift warning. |
+| `status`       | `--format {table,json}`                                                 | Show plugin versions, repo SHAs, manifest hashes, drift indicators.                                               |
+| `inspect`      | `--env <name>` `--os <ids>`                                             | Output merged builder/provisioner configs for audit.                                                              |
+| `clean`        | `--scope {work,artifacts,state}` `--yes`                                | Delete temporary files per scope, never touch templates without explicit flag.                                    |
+| `diag`         | `--output <path>`                                                       | Bundle logs, manifests, state snapshots.                                                                          |
+| `wizard`/`tui` | `--mode {text,curses}` `--export <answers.json>`                        | Guide users through config/build flows, emitting the same files/commands as non-interactive mode.                 |
 
 #### Scenario: Argument validation
 
@@ -154,4 +157,3 @@ Unit tests SHALL cover argument parsing, hybridcore integration points, and erro
 
 - **WHEN** `make test-cli` runs
 - **THEN** it MUST execute unit tests for command parsers plus invoke `packer fmt -check`/`packer validate` on sample templates, failing if verification gates are skipped.
-
