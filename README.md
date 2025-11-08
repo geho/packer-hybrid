@@ -7,3 +7,7 @@ See [specs/hybridcore-logs/context-flow.md](openspec/specs/hybridcore-logs/conte
 ## Config Integrations
 
 Configuration outputs feed multiple modules. Review [specs/hybridcore-config/config-integrations.md](openspec/specs/hybridcore-config/config-integrations.md) before changing vars or manifests so you understand how hashes drive `state`, `templates`, `packer`, and `provisioners`.
+
+## State Atomic Writes
+
+State helpers rely on strict atomic write semantics. See [specs/hybridcore-state/state-io.md](openspec/specs/hybridcore-state/state-io.md) for the temp-file/fsync/rename flow and audit logging requirements before modifying persistence code or recovery logic.

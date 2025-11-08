@@ -8,27 +8,64 @@ Describe how `hybridcore.state` stores JSON metadata, handles schema evolution, 
 
 ### Requirement: Storage Format
 
-`hybridcore-state` SHALL persist JSON documents under `state/` capturing plugin versions, repo SHAs, manifests, and timestamps. Keys MUST be sorted and files written atomically using temp files + rename.
+`hybridcore-state` SHALL catalog every JSON artifact under `state/`:
+
+- `state/sources.json` – plugin/example repo pins (`name`, `url`, `branch`, `sha`, `updated_at`).
+- `state/config/<env>.json` – vars hashes + provenance for each environment.
+- `state/packer-manifests/<build>.json` – packer artifact metadata, builder IDs, timestamps.
+- `state/index.json` – registry referencing the latest version/hash of each artifact.
+
+Each file MUST include `schema_version`, `generated_at`, and `origin` metadata (module + command). Writes SHALL be atomic using temp files (`*.tmp`), fsync (file + directory), optional advisory locks, and rename.
+
+See `specs/hybridcore-state/state-map.md` for the data layout.
 
 #### Scenario: Atomic write
 
-- **WHEN** state updates occur
-- **THEN** the module MUST write to `state/packer-hybrid.json.tmp`, fsync, and rename to avoid corruption on crash.
+- **WHEN** `state/sources.json` updates
+- **THEN** the module MUST write to `state/sources.json.tmp`, fsync file + directory, honor locks if configured, and rename to the final path.
 
-### Requirement: Access APIs
+### Requirement: Access APIs & Migrations
 
-The module MUST provide `read_state()` and `write_state()` helpers that validate schema versions and default missing fields, ensuring backward compatibility.
+The module SHALL expose `read_state(path, schema)` and `write_state(path, payload, schema)` helpers that:
+
+- Validate `schema_version` before reads/writes.
+- Apply migrations via `migrate_state(data, from_version, to_version)`; migrations MUST be idempotent and logged.
+- Provide backward compatibility via default populators and `deprecated_fields` shims for external consumers.
+- Emit audit records (command ID, before/after hashes) for every mutation.
+
+See `specs/hybridcore-state/state-io.md` for the atomic write flow and `specs/hybridcore-state/migration-workflow.md` for schema upgrade steps.
 
 #### Scenario: Schema upgrade
 
-- **WHEN** a new field is introduced
-- **THEN** `read_state()` MUST populate defaults so older state files still load.
+- **WHEN** `schema_version` increments
+- **THEN** `read_state()` MUST migrate older files transparently, log the upgrade, and write back only after validation succeeds.
 
-### Requirement: Testing
+### Requirement: Cross-Module Integrations & Recovery
 
-Unit tests SHALL simulate concurrent writes (using temp dirs) to confirm atomicity and schema migrations. Integration tests SHALL ensure state files pass JSON schema validation in CI.
+State mutations MUST be traceable across modules:
 
-#### Scenario: Concurrent access
+- `hybridcore.sources` writes repo pins and records the command ID triggering the update.
+- `hybridcore.templates` consumes config hashes to detect drift and records checks in state.
+- `hybridcore.packer` reads/writes manifest state referencing build IDs.
+- `hybridcore.provisioners` reads state to decide var toggles and writes execution summaries.
 
-- **WHEN** two writes happen back-to-back
-- **THEN** tests MUST verify the last write wins without partial files remaining.
+Crash recovery MUST detect leftover `.tmp` files, log warnings, and attempt automated repair (finalize rename or remove corrupted temp files).
+
+#### Scenario: Crash recovery
+
+- **WHEN** a `.tmp` file exists on startup
+- **THEN** the module MUST verify its integrity, finish the rename if complete, or delete + alert if corrupted so downstream modules resume safely.
+
+### Requirement: Testing & CLI Surfacing
+
+`hybridcore-state` SHALL enforce:
+
+- Schema fixtures validated via JSON Schema/Pydantic.
+- Concurrency simulations stressing atomicity in temp dirs.
+- Corruption injection tests (truncate, garble JSON) verifying detection/recovery.
+- CLI command `hybridcore state check` that scans for inconsistencies, version mismatches, and temp leftovers; CI MUST run it.
+
+#### Scenario: Corruption detection
+
+- **WHEN** `state/config/dev.json` is truncated
+- **THEN** the CLI check MUST fail with remediation guidance, and automated recovery SHALL restore from the latest good backup when available.
