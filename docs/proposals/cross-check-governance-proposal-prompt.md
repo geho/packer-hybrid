@@ -4,5 +4,5 @@
 Prompt-Source: docs/proposals/cross-check-governance-proposal-prompt.md
 Reference: [specs/governance/spec.md](openspec/specs/governance/spec.md)
 Change-Start: add-cross-check-governance 2025-11-08T20:00:00Z
-Change-Archived: PENDING
+Change-Archived: add-cross-check-governance 2025-11-08T19:22:26Z
 -->
