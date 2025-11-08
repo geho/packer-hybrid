@@ -19,6 +19,8 @@
 
 ## Project Conventions
 
+Refer to `openspec/specs/governance/spec.md` for repository-wide policies covering diagram storage/linking, documentation lifecycle, prompt traceability, and git-tracked vs generated assets.
+
 ### Code Style
 
 - All Python sources (including executables in `tools/` without `.py` extension) start with `#!/usr/bin/env python3`, include SPDX license header, UTC timestamp, and references to the driving spec + diagram assets.

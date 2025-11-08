@@ -1,10 +1,11 @@
-# Packer Hybrid CLI Specification
+# cli Specification
 
+## Purpose
+TBD - created by archiving change refactor-misplaced-specs. Update Purpose after archive.
 ## Requirements
-
 ### Requirement: Deterministic Command Surface
 
-The CLI SHALL expose the following subcommands with stable semantics: `init`, `sources sync`, `config`, `validate`, `build`, `publish`, `status`/`inspect`, `clean`, `diag`, and optional `wizard`/`tui`.
+The CLI SHALL expose the subcommands `init`, `sources sync`, `config`, `validate`, `build`, `publish`, `status`/`inspect`, `clean`, `diag`, and optional `wizard`/`tui`, each with stable semantics.
 
 #### Scenario: Deterministic execution
 
@@ -13,7 +14,7 @@ The CLI SHALL expose the following subcommands with stable semantics: `init`, `s
 
 ### Requirement: Hybridcore Integration
 
-All commands MUST operate through the `hybridcore` package rather than reimplementing logic.
+All CLI commands MUST execute through the `hybridcore` package rather than reimplementing logic.
 
 #### Scenario: Shared orchestration
 
@@ -57,3 +58,26 @@ The optional `wizard`/`tui` SHALL wrap non-interactive commands without divergin
 
 - **WHEN** `diag` executes
 - **THEN** it SHALL gather `logs/*.log`, the latest manifests in `artifacts/`, and `state/packer-hybrid.json`, store them under `artifacts/diag/<timestamp>.tar.gz`, and report the file path.
+
+### Requirement: Wizard Template Consistency
+
+The wizard SHALL render UI layouts from shared assets under `templates/wizard/`, ensuring text-only, curses, and future Django flows share the same content blocks and validation rules.
+
+#### Scenario: Unified layouts
+
+- **WHEN** an operator launches the wizard in text mode, curses UI, or via the Django frontend
+- **THEN** all three MUST render the same prompts, validation, and output structure sourced from `templates/wizard/`, differing only in presentation layers.
+
+```mermaid
+flowchart TD
+  A["Gather Inputs"] --> B["Normalize Answers"]
+  B --> C["Render templates/wizard"]
+  C --> D["Text UI"]
+  C --> E["Curses UI"]
+  C --> F["Django UI"]
+  D --> G["configs/&lt;env&gt;/*.auto.pkrvars.hcl"]
+  E --> G
+  F --> G
+  G --> H["State & Validation"]
+```
+
