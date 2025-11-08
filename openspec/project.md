@@ -2,17 +2,17 @@
 
 ## Purpose
 
-- Deliver and maintain the **packer-hybrid** framework that produces identical “golden” images for Proxmox VE, VMware vSphere, and Microsoft Azure from a single Packer codebase (see docs/drafts/InitialIdeas.md#multi-cloud-unification-ideas).
+- Deliver and maintain the **packer-hybrid** framework that produces identical “golden” images for Proxmox VE, VMware vSphere, and Microsoft Azure from a single Packer codebase (see openspec/specs/templates/multi-cloud-structure.md).
 - Provide the `tools/packer-hybrid` CLI (Python 3, stdlib only) to manage plugin sources under `sources/`, scaffold/update templates, execute `packer build/validate`, and publish artifacts to Proxmox templates, vSphere content libraries, and Azure managed images.
-- Merge the lessons learned from both public example frameworks (summarized in docs/drafts/InitialIdeas.md#example-framework-takeaways) into a unified multi-cloud structure with standardized variables, scripts, and CI hooks.
+- Merge the lessons learned from both public example frameworks (captured in openspec/specs/templates/multi-cloud-structure.md and openspec/specs/provisioning/ansible-and-puppet.md) into a unified multi-cloud structure with standardized variables, scripts, and CI hooks.
 - Keep the framework spec-first: every feature references an openspec entry/diagram, and the CLI enforces drift detection against specs/templates.
 
 ## Tech Stack
 
 - **HashiCorp Packer (HCL2)** with the official plugins:
-  - Proxmox plugin (sources/packer-plugin-proxmox; pin >=1.2.3 per docs/drafts/InitialIdeas.md#platform-highlights).
-  - VMware vSphere plugin (sources/packer-plugin-vsphere; pin >=1.4.0 per docs/drafts/InitialIdeas.md#platform-highlights).
-  - Azure ARM plugin (sources/packer-plugin-azure; pin >=2.5.0 per docs/drafts/InitialIdeas.md#platform-highlights).
+  - Proxmox plugin (sources/packer-plugin-proxmox; pin >=1.2.3 per openspec/specs/templates/multi-cloud-structure.md).
+  - VMware vSphere plugin (sources/packer-plugin-vsphere; pin >=1.4.0 per openspec/specs/templates/multi-cloud-structure.md).
+  - Azure ARM plugin (sources/packer-plugin-azure; pin >=2.5.0 per openspec/specs/templates/multi-cloud-structure.md).
 - **Python 3 (stdlib only)** for CLI/tooling (argparse, dataclasses, logging, pathlib, subprocess, unittest).
 - **Bash** glue scripts (when unavoidable) constrained to repo root tooling.
 - **Prettier** for Markdown/docs formatting as enforced in AGENTS.md.
@@ -26,7 +26,7 @@
 - Standard library only; prefer `pathlib`, `subprocess.run(check=True)`, `dataclasses.dataclass`, `typing.Protocol` to keep code self-documenting. Avoid implicit globals; inject dependencies via constructors/mixins.
 - Tests are written first (`unittest.TestCase`) and live next to the code (e.g., `tools/tests/test_packer_hybrid.py`). Use fixtures + tempdirs to isolate filesystem effects.
 
-### Architecture Patterns _(Spec Migration: templates/multi-cloud-structure.md)_
+### Architecture Patterns (see openspec/specs/templates/multi-cloud-structure.md)
 
 - Treat the repository as a **multi-cloud mono-repo** with explicit boundaries:
   - `tools/packer-hybrid`: orchestrates plugin sync, template generation, packer commands, artifact publication, metadata export, and exposes reusable mixins for filesystem + process orchestration.
@@ -42,7 +42,7 @@
   - Naming convention: `source.<plugin>-iso.<image_name>` or `source.azure-arm.<image_name>` so builds can reference `source.*.*` lists without string duplication.
 - Workflow is **data-driven**: all commands operate by merging `templates/**/*.pkr.hcl`, environment vars, and generated configs, never editing packer files in-place. The CLI refuses to run builds if `state/` shows drift against manifests or if `sources/` has uncommitted changes.
 
-### CLI Workflow & Interfaces _(Spec Migration: cli/packer-hybrid-cli.md)_
+### CLI Workflow & Interfaces (see openspec/specs/cli/packer-hybrid-cli.md)
 
 - Deterministic subcommands back every operation (all stdlib, no interactive prompts unless explicitly requested):
   - `packer-hybrid init` – bootstrap directories, ensure `sources/` repos exist, seed `templates/` skeletons, create default env configs.
@@ -56,7 +56,7 @@
   - `packer-hybrid diag` – bundle logs/manifests for troubleshooting.
 - Optional **text UI** (`packer-hybrid tui` or `wizard`) provides a menu-driven experience (curses-based) for new operators. It still shells out to the same subcommands so scripted and interactive flows stay consistent.
 
-### Shared Python Core _(Spec Migration: core/hybridcore-package.md)_
+### Shared Python Core (see openspec/specs/hybridcore/package.md)
 
 - Business logic lives in a reusable stdlib-only package (working name `hybridcore`) so the CLI, tests, and future Django services import the same modules:
   - `hybridcore/config` – renders `.pkrvars.hcl` from templates, merges env overlays, validates schemas, and exposes helpers like `generate_env_config`.
@@ -68,7 +68,7 @@
   - `hybridcore/logs` – centralizes logging format/rotation so CLI and web tasks emit consistent records.
 - `tools/packer-hybrid` becomes a thin argparse shim over `hybridcore`, and any Django/worker process can reuse the same APIs without duplicating orchestration logic.
 
-### Provisioning Tooling _(Spec Migration: provisioning/ansible-and-puppet.md)_
+### Provisioning Tooling (see openspec/specs/provisioning/ansible-and-puppet.md)
 
 - **Ansible-first**: provisioners default to `ansible`/`ansible-local` roles located in `templates/ansible/roles/{common,linux,windows,platform_*}`, ensuring identical hardening across clouds (see docs/drafts/InitialIdeas.md#workflow-alignment).
 - **Optional Puppet**: teams can opt into masterless Puppet by populating `templates/puppet/{manifests,modules}`. Builders gate Puppet provisioners behind `var.enable_puppet` flags so a single template can switch between Ansible and Puppet. CLI helpers (`packer-hybrid config --provisioner puppet`) generate the necessary `puppet.conf`/Hiera stubs and ensure modules sync before builds.
@@ -96,8 +96,8 @@
   - Proxmox requires node IDs, storage pools, and HTTP autoinstall endpoints (docs/OverviewPlugins/03_ProxmoxPlugin.md).
   - vSphere needs datacenter/cluster/folder targeting plus post-build template conversion (docs/OverviewPlugins/04_vSpherePlugin.md).
   - Azure outputs managed images/shared image gallery objects and mandates service principal auth (docs/OverviewPlugins/05_AzurePlugin.md).
-- **Example frameworks insight**: both public repos share config/init scripts, environment-aware vars, and provisioning stacks (see docs/drafts/InitialIdeas.md#example-framework-takeaways). These notes are treated as hints; durable learnings must migrate into openspec entries or a curated `docs/knowledge-base.md`.
-- **Unified framework goal**: adopt the simultaneous-build flow described in docs/drafts/InitialIdeas.md#multi-cloud-unification-ideas—single command builds identical images per platform, with consistent provisioning + artifact tagging.
+- **Example frameworks insight**: both public repos share config/init scripts, environment-aware vars, and provisioning stacks (see openspec/specs/templates/multi-cloud-structure.md). These notes are treated as hints; durable learnings must reside in openspec entries.
+- **Unified framework goal**: adopt the simultaneous-build flow described in openspec/specs/templates/multi-cloud-structure.md—single command builds identical images per platform, with consistent provisioning + artifact tagging.
 
 ## Verification & Quality Gates
 
