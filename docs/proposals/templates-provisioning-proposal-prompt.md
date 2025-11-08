@@ -3,6 +3,6 @@
 <!--
 Prompt-Source: docs/proposals/templates-provisioning-proposal-prompt.md
 Reference: [specs/templates/spec.md](openspec/specs/templates/spec.md)
-Change-Start: PENDING
-Change-Archived: PENDING
+Change-Start: refactor-misplaced-specs 2025-11-08T14:10:00Z
+Change-Archived: refactor-misplaced-specs 2025-11-08T14:43:51Z
 -->
