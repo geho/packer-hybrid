@@ -46,8 +46,13 @@ Keep this managed block so 'openspec update' can refresh the instructions.
 ## 1) CLI Tool Availability Check (Canonical)
 
 - At the **start of each session**, agents **MUST** detect and report the availability **and** version of required CLI tools **in the first message of the session**.
+- **git:** run `git --version`; report `git: <version>` or `git: NOT INSTALLED`.
 - **openspec:** run `openspec --version`; report `openspec: <version>` or `openspec: NOT INSTALLED`.
 - **Prettier:** run `prettier --version`; report `prettier: <version>` or `prettier: NOT INSTALLED`.
+- **MarkdownLinkCheck:** run `markdown-link-check --version`; report `markdown-link-check: <version>` or `markdown-link-check: NOT INSTALLED`.
+- **Mermaid:** run `mmd --version`; report `mmd: <version>` or `mmd: NOT INSTALLED`.
+- **Packer:** run `packer --version`; report `packer: <version>` or `packer: NOT INSTALLED`.
+- **Python:** run `python3 --version`; report `python3: <version>` or `python3: NOT INSTALLED`.
 - If a tool is missing, you **SHOULD** include a brief install hint or link in that same message.
 
 **Optional helper (bash)**
