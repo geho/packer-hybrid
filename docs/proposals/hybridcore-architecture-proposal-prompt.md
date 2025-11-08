@@ -3,6 +3,6 @@
 <!--
 Prompt-Source: docs/proposals/hybridcore-architecture-proposal-prompt.md
 Reference: [specs/hybridcore/spec.md](openspec/specs/hybridcore/spec.md)
-Change-Start: PENDING
-Change-Archived: PENDING
+Change-Start: refactor-misplaced-specs 2025-11-08T14:10:00Z
+Change-Archived: refactor-misplaced-specs 2025-11-08T14:43:51Z
 -->
