@@ -3,9 +3,7 @@
 ## Purpose
 
 Define the packer-hybrid CLI surface—commands, arguments, logging, wizard/TUI expectations, and the verification gates each command must enforce—so implementations across CLI and future UIs behave consistently.
-
 ## Requirements
-
 ### Requirement: Deterministic Command Surface
 
 The CLI SHALL expose the subcommands `init`, `sources sync`, `config`, `validate`, `build`, `publish`, `status`/`inspect`, `clean`, `diag`, and optional `wizard`/`tui`, each with stable semantics.
@@ -55,57 +53,30 @@ The optional `wizard`/`tui` SHALL wrap non-interactive commands without divergin
 
 ### Requirement: Diagnostics
 
-`packer-hybrid diag` MUST collect recent logs, manifests, and state snapshots into an archive for troubleshooting.
+`diag` SHALL run the shared redaction hook before bundling, record retention metadata (per the security spec), and emit a manifest listing every scrubbing action.
 
-#### Scenario: Diag bundle
+#### Scenario: Redacted bundle
 
-- **WHEN** `diag` executes
-- **THEN** it SHALL gather `logs/*.log`, the latest manifests in `artifacts/`, and `state/packer-hybrid.json`, store them under `artifacts/diag/<timestamp>.tar.gz`, and report the file path.
+- **WHEN** `diag` packages logs/manifests/state
+- **THEN** it MUST scrub secrets via the shared redaction hook, note retention expiry (per security spec), and include a manifest of redacted files.
 
 ### Requirement: Wizard Template Consistency
 
-The wizard SHALL render UI layouts from shared assets under `templates/wizard/`, ensuring text-only, curses, and future Django flows share the same content blocks and validation rules.
+Wizard/command diagrams SHALL live in the spec and docs MUST embed those diagrams; CI/test tooling MUST fail when docs drift from the spec sources.
 
-#### Scenario: Unified layouts
+#### Scenario: Diagram enforcement
 
-- **WHEN** an operator launches the wizard in text mode, curses UI, or via the Django frontend
-- **THEN** all three MUST render the same prompts, validation, and output structure sourced from `templates/wizard/`, differing only in presentation layers.
-
-```mermaid
-flowchart TD
-  A["Gather Inputs"] --> B["Normalize Answers"]
-  B --> C["Render templates/wizard"]
-  C --> D["Text UI"]
-  C --> E["Curses UI"]
-  C --> F["Django UI"]
-  D --> G["configs/&lt;env&gt;/*.auto.pkrvars.hcl"]
-  E --> G
-  F --> G
-  G --> H["State & Validation"]
-```
+- **WHEN** wizard/command diagrams change in the spec
+- **THEN** docs MUST embed the updated diagrams, and CI MUST fail if they fall out of sync.
 
 ### Requirement: Command Catalogue & Arguments
 
-Each CLI command SHALL expose the arguments below and emit structured stdout/stderr describing actions taken; unrecognized flags MUST cause an error before any side effects.
+`status|inspect` SHALL emit machine-readable JSON matching a documented schema/version, including field definitions, error codes, and backward-compatibility guidance.
 
-| Command        | Required arguments                                                      | Key behaviours                                                                                                    |
-| -------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `init`         | `--force` (optional)                                                    | Create templates/, configs/, artifacts/, logs/, state/ skeletons, clone sources if missing.                       |
-| `sources sync` | `--all` or `--plugin <name>`                                            | Fetch/checkout plugin/example repos, update metadata in `state/sources.json`, refuse when working tree dirty.     |
-| `config`       | `--env <name>` `--targets <platforms>` `--from <answers.json>`          | Render `.auto.pkrvars.hcl`, point secrets to env/secret manager, print generated files.                           |
-| `validate`     | `--env <name>` `--targets <platforms>` `--os <ids>`                     | Run `packer fmt -check`, `packer validate`, surface per-target summaries, stop on first fatal error.              |
-| `build`        | `--env <name>` `--targets <platforms>` `--os <ids>` `--parallelism <n>` | Launch packer builds, stream logs, capture manifests, update `state/packer-hybrid.json`.                          |
-| `publish`      | `--env <name>` `--targets <platforms>`                                  | Perform template conversion/SIG replication only if manifests match templates, otherwise fail with drift warning. |
-| `status`       | `--format {table,json}`                                                 | Show plugin versions, repo SHAs, manifest hashes, drift indicators.                                               |
-| `inspect`      | `--env <name>` `--os <ids>`                                             | Output merged builder/provisioner configs for audit.                                                              |
-| `clean`        | `--scope {work,artifacts,state}` `--yes`                                | Delete temporary files per scope, never touch templates without explicit flag.                                    |
-| `diag`         | `--output <path>`                                                       | Bundle logs, manifests, state snapshots.                                                                          |
-| `wizard`/`tui` | `--mode {text,curses}` `--export <answers.json>`                        | Guide users through config/build flows, emitting the same files/commands as non-interactive mode.                 |
+#### Scenario: Status schema enforcement
 
-#### Scenario: Argument validation
-
-- **WHEN** an operator runs `packer-hybrid build --env prod --targets proxmox,azure --os ubuntu`
-- **THEN** the CLI MUST resolve the builder matrix via hybridcore, run fmt/validate before builds, and error out if any required argument is missing or unknown flags are supplied.
+- **WHEN** `status --format json` runs
+- **THEN** it MUST emit the documented schema version and fail if fields are missing or renamed.
 
 ### Requirement: Logging & Error Handling
 
@@ -142,21 +113,12 @@ sequenceDiagram
 
 ### Requirement: Verification & Testing Gates
 
-Every command execution MUST respect the verification checklist:
+Verification gates SHALL reference the governing `specs/security/spec.md` sections instead of duplicating rules, and CLI MUST log which gate (by spec ID) it enforced.
 
-- `init/sources` → run `git status` on sources, ensure pinned SHAs recorded.
-- `config` → validate schema, ensure secrets referenced via env/secret manager.
-- `validate` → run `packer fmt -check` + `packer validate`.
-- `build` → ensure `validate` passed in same run, detect drift, require clean working tree.
-- `publish` → compare manifests vs templates before proceeding.
-- `status/inspect` → provide machine-readable output for CI assertions.
+#### Scenario: Security gate linkage
 
-Unit tests SHALL cover argument parsing, hybridcore integration points, and error handling for each command; integration tests SHALL run `packer fmt -check` and `python -m unittest` in CI per `openspec/project.md`.
-
-#### Scenario: CI enforcement
-
-- **WHEN** `make test-cli` runs
-- **THEN** it MUST execute unit tests for command parsers plus invoke `packer fmt -check`/`packer validate` on sample templates, failing if verification gates are skipped.
+- **WHEN** CLI runs `build/publish`
+- **THEN** it MUST invoke the security-verified gate and log the spec section ID instead of re-describing the checklist.
 
 ### Requirement: Command Semantics & Validation
 
@@ -178,12 +140,21 @@ Logging behaviour SHALL explicitly describe `--verbose`, `--quiet`, and `--json`
 
 ### Requirement: Command → Module Mapping
 
-The CLI spec SHALL reference `specs/cli/command-module-map.md` (new diagram) showing how commands call hybridcore modules, and contributors SHALL keep it aligned whenever commands change.
+Each command description SHALL cite the corresponding module remediation draft/Open Issues so outstanding dependencies remain visible.
 
-#### Scenario: Diagram upkeep
+#### Scenario: Cross-link Open Issues
 
-- **WHEN** a new command is added
-- **THEN** the diagram MUST be updated and referenced from the CLI spec.
+- **WHEN** the CLI spec describes `build`
+- **THEN** it MUST cite the relevant `docs/spec-remediations/hybridcore-*` draft so readers can trace dependencies.
+
+### Requirement: Clean Scope Retention
+
+`clean --scope ...` SHALL describe which artifacts/logs are preserved for compliance (per the security retention policy) and MUST refuse to delete evidence outside the caller’s scope.
+
+#### Scenario: Preserving compliance evidence
+
+- **WHEN** `clean --scope artifacts` runs
+- **THEN** it MUST leave security-required evidence (latest manifests, audit logs) untouched and log what was preserved.
 
 ### Requirement: Open Issues Tracking
 
