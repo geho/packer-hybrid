@@ -25,3 +25,7 @@ The end-to-end configuration pipeline (input discovery → schema validation →
 ## State Artifact Map
 
 To understand how JSON artifacts under `state/` relate (sources pins, config hashes, packer manifests, index), see [specs/hybridcore-state/state-map.md](openspec/specs/hybridcore-state/state-map.md). Reference it when debugging drift detection or state corruption.
+
+## Packer Wrapper Flow
+
+For the execution pipeline (env prep → packer CLI → manifest capture → state/log updates), reference [specs/hybridcore-packer/wrapper-flow.md](openspec/specs/hybridcore-packer/wrapper-flow.md). Use it when reasoning about new flags or automation entrypoints.

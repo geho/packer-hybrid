@@ -1,8 +1,4 @@
-## Purpose
-
-Specify how `hybridcore.packer` wraps packer commands, enforces drift detection, tracks artifacts, and validates packer integrations. Reference: [specs/hybridcore/spec.md](openspec/specs/hybridcore/spec.md)
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Command Wrappers
 
