@@ -3,7 +3,9 @@
 ## Purpose
 
 Define the packer-hybrid CLI surface—commands, arguments, logging, wizard/TUI expectations, and the verification gates each command must enforce—so implementations across CLI and future UIs behave consistently.
+
 ## Requirements
+
 ### Requirement: Deterministic Command Surface
 
 The CLI SHALL expose the subcommands `init`, `sources sync`, `config`, `validate`, `build`, `publish`, `status`/`inspect`, `clean`, `diag`, and optional `wizard`/`tui`, each with stable semantics.
@@ -182,6 +184,15 @@ The CLI spec SHALL reference `specs/cli/command-module-map.md` (new diagram) sho
 
 - **WHEN** a new command is added
 - **THEN** the diagram MUST be updated and referenced from the CLI spec.
+
+### Requirement: Open Issues Tracking
+
+The cli spec SHALL keep a `## Open Issues` section pointing to `docs/spec-remediations/cli-remediations.md`. Assessments MUST summarize outstanding gaps per dimension in that doc and cross-reference it from the spec.
+
+#### Scenario: Remediation linkage
+
+- **WHEN** a spec assessment uncovers deviations for the cli spec
+- **THEN** contributors SHALL update `docs/spec-remediations/cli-remediations.md` and refresh the spec's `## Open Issues` pointer before merging changes.
 
 ## Open Issues
 

@@ -3,7 +3,9 @@
 ## Purpose
 
 Describe how `hybridcore.state` stores JSON metadata, handles schema evolution, and provides read/write helpers aligned to the umbrella spec. Reference: [specs/hybridcore/spec.md](openspec/specs/hybridcore/spec.md)
+
 ## Requirements
+
 ### Requirement: Storage Format
 
 `hybridcore-state` SHALL catalog every JSON artifact under `state/`:
@@ -69,6 +71,15 @@ Spec SHALL describe migration tooling/rollback/audit guidance.
 
 - **WHEN** operators run migrations
 - **THEN** they MUST follow the documented toolkit and audit logging steps.
+
+### Requirement: Open Issues Tracking
+
+The hybridcore-state spec SHALL keep a `## Open Issues` section pointing to `docs/spec-remediations/hybridcore-state-remediations.md`. Assessments MUST summarize outstanding gaps per dimension in that doc and cross-reference it from the spec.
+
+#### Scenario: Remediation linkage
+
+- **WHEN** a spec assessment uncovers deviations for the hybridcore-state spec
+- **THEN** contributors SHALL update `docs/spec-remediations/hybridcore-state-remediations.md` and refresh the spec's `## Open Issues` pointer before merging changes.
 
 ## Open Issues
 

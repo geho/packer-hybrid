@@ -3,7 +3,9 @@
 ## Purpose
 
 Capture verification gates, secrets/IAM policies, documentation expectations, and proposal governance so every change meets the project’s security and compliance bar.
+
 ## Requirements
+
 ### Requirement: Quality Gate Checklist
 
 Every change SHALL run `prettier --write` (or `--check`), `python -m compileall`/unit tests, and `packer fmt -check` plus `packer validate` for affected builders. Drift detection via `packer-hybrid status` MUST precede `build`/`publish`.
@@ -97,6 +99,15 @@ Security spec SHALL document scanning cadence and SBOM requirements.
 
 - **WHEN** the scheduled scan runs
 - **THEN** `scripts/scan-supply-chain.sh` MUST execute, attach the SBOM, and record results.
+
+### Requirement: Open Issues Tracking
+
+The security spec SHALL keep a `## Open Issues` section pointing to `docs/spec-remediations/security-remediations.md`. Assessments MUST summarize outstanding gaps per dimension in that doc and cross-reference it from the spec.
+
+#### Scenario: Remediation linkage
+
+- **WHEN** a spec assessment uncovers deviations for the security spec
+- **THEN** contributors SHALL update `docs/spec-remediations/security-remediations.md` and refresh the spec's `## Open Issues` pointer before merging changes.
 
 ## Open Issues
 

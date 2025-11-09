@@ -64,6 +64,15 @@ See `specs/hybridcore-templates/onboarding-checklist.md`.
 - **WHEN** adding `linux/gcp`
 - **THEN** the contributor MUST follow the checklist (naming, manifests, metadata) before enabling the platform.
 
+### Requirement: Open Issues Tracking
+
+The hybridcore-templates spec SHALL keep a `## Open Issues` section pointing to `docs/spec-remediations/hybridcore-templates-remediations.md`. Assessments MUST summarize outstanding gaps per dimension in that doc and cross-reference it from the spec.
+
+#### Scenario: Remediation linkage
+
+- **WHEN** a spec assessment uncovers deviations for the hybridcore-templates spec
+- **THEN** contributors SHALL update `docs/spec-remediations/hybridcore-templates-remediations.md` and refresh the spec's `## Open Issues` pointer before merging changes.
+
 ## ADDED Requirements
 
 ### Requirement: Testing & Change Detection
@@ -84,4 +93,4 @@ See `specs/hybridcore-templates/testing-matrix.md`.
 
 ## Open Issues
 
-OS Image variant taxonomy, checksum cache policies, metadata schema completeness, change-detection signals, and state sync requirements remain open. See `docs/drafts/templates-spec-gaps.md`.
+See `docs/spec-remediations/hybridcore-templates-remediations.md` for outstanding work on variant taxonomy, checksum caching, metadata completeness, change-detection signals, and state/state sync requirements.

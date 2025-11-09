@@ -1,7 +1,9 @@
 ## Purpose
 
 Specify how `hybridcore.packer` wraps packer commands, enforces drift detection, tracks artifacts, and validates packer integrations. Reference: [specs/hybridcore/spec.md](openspec/specs/hybridcore/spec.md)
+
 ## Requirements
+
 ### Requirement: Command Wrappers
 
 `hybridcore-packer` SHALL provide wrapper functions `fmt(targets)`, `validate(targets, vars)`, and `build(targets, vars, provisioners)` that:
@@ -36,6 +38,15 @@ Packer caches/parallelism SHALL follow the documented invalidation/limit rules.
 
 - **WHEN** templates bump ISO versions
 - **THEN** caches MUST be purged per spec before concurrent builds proceed.
+
+### Requirement: Open Issues Tracking
+
+The hybridcore-packer spec SHALL keep a `## Open Issues` section pointing to `docs/spec-remediations/hybridcore-packer-remediations.md`. Assessments MUST summarize outstanding gaps per dimension in that doc and cross-reference it from the spec.
+
+#### Scenario: Remediation linkage
+
+- **WHEN** a spec assessment uncovers deviations for the hybridcore-packer spec
+- **THEN** contributors SHALL update `docs/spec-remediations/hybridcore-packer-remediations.md` and refresh the spec's `## Open Issues` pointer before merging changes.
 
 ## ADDED Requirements
 

@@ -3,7 +3,9 @@
 ## Purpose
 
 Outline the logging interface shared across CLI/tests, including formatting, rotation, and redaction, as part of the hybridcore umbrella. Reference: [specs/hybridcore/spec.md](openspec/specs/hybridcore/spec.md)
+
 ## Requirements
+
 ### Requirement: Logger Interface
 
 `hybridcore-logs` SHALL provide `init_logging(env, component, artifact_dir)` that boots loggers for CLI, tests, and background workers before any other module runs. The initializer MUST:
@@ -68,6 +70,15 @@ Spec SHALL describe retention policy guidance and linkage to security/CLI flags 
 
 - **WHEN** operators configure retention
 - **THEN** they MUST follow the spec’s guidance on size/time limits and CLI flag propagation.
+
+### Requirement: Open Issues Tracking
+
+The hybridcore-logs spec SHALL keep a `## Open Issues` section pointing to `docs/spec-remediations/hybridcore-logs-remediations.md`. Assessments MUST summarize outstanding gaps per dimension in that doc and cross-reference it from the spec.
+
+#### Scenario: Remediation linkage
+
+- **WHEN** a spec assessment uncovers deviations for the hybridcore-logs spec
+- **THEN** contributors SHALL update `docs/spec-remediations/hybridcore-logs-remediations.md` and refresh the spec's `## Open Issues` pointer before merging changes.
 
 ## Open Issues
 

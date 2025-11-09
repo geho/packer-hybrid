@@ -1,7 +1,11 @@
-# Security Spec Gaps
+# Security Spec Remediations
 
-1. **Gaps** – Secrets rotation workflow, credentials storage for Puppet/Ansible, and incident response procedures not codified.
-2. **Completeness** – No coverage of supply-chain scanning (sources, templates) or SBOM requirements.
-3. **Alignment** – Security spec duplicates CLI/packer verification gates; consider referencing those specs instead of restating.
+## Open Topics
 
-Remediation: extend security spec with secrets rotation/incident response steps, supply-chain scanning requirements, and references to avoid duplication.
+1. **Gaps** – Secrets rotation workflow, credentials storage for Puppet/Ansible, and incident response procedures are not codified. _Plan_: add requirements for rotation cadence, storage backends, and runbooks.
+2. **Completeness** – No coverage of supply-chain scanning (sources, templates) or SBOM requirements. _Plan_: document mandatory scanners, outputs, and CI gating.
+3. **Alignment / Duplicates** – Security spec duplicates CLI/packer verification gates instead of referencing those specs. _Plan_: replace duplicated text with references and describe how security validates the gates.
+
+## Closed Topics
+
+1. _None yet – first remediation will populate this section._

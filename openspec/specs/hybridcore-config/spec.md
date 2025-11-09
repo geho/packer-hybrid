@@ -3,7 +3,9 @@
 ## Purpose
 
 Detail the data contracts, inputs/overlays, and testing expectations for `hybridcore.config`, extending the umbrella hybridcore spec. Reference: [specs/hybridcore/spec.md](openspec/specs/hybridcore/spec.md)
+
 ## Requirements
+
 ### Requirement: Config Inputs & Overlays
 
 `hybridcore-config` SHALL orchestrate the full pipeline:
@@ -102,6 +104,15 @@ Spec SHALL describe manifest/checksum updates in `state/config/<env>.json` and c
 
 - **WHEN** configs change
 - **THEN** state hashes MUST be updated so downstream modules detect drift.
+
+### Requirement: Open Issues Tracking
+
+The hybridcore-config spec SHALL keep a `## Open Issues` section pointing to `docs/spec-remediations/hybridcore-config-remediations.md`. Assessments MUST summarize outstanding gaps per dimension in that doc and cross-reference it from the spec.
+
+#### Scenario: Remediation linkage
+
+- **WHEN** a spec assessment uncovers deviations for the hybridcore-config spec
+- **THEN** contributors SHALL update `docs/spec-remediations/hybridcore-config-remediations.md` and refresh the spec's `## Open Issues` pointer before merging changes.
 
 ## Open Issues
 

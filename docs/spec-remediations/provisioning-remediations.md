@@ -1,15 +1,12 @@
-# Provisioning Spec Gaps
-
-1. **Gaps** – Windows provisioning parity, secret distribution, and cross-platform script requirements not fully defined.
-2. **Completeness** – Need explicit lint/test requirements per provisioner (Ansible/Puppet/SSH) and per-platform docs.
-3. **Alignment** – Should reference provisioner-specific drafts (opt-in, Puppet modes) and templates spec to ensure consistent builder expectations.
+# Provisioning Spec Remediations
 
 ## Open Topics
 
-1. **Windows parity & secrets** – still pending documentation (future change).
+1. **Gaps** – Windows provisioning parity, secret distribution, and cross-platform script requirements are still undefined. _Plan_: add OS-specific sections that cover user-data, WinRM/SSH expectations, and secret handoff across provisioners.
+2. **Completeness** – The spec lacks explicit lint/test requirements per provisioner (Ansible/Puppet/SSH) and per platform. _Plan_: add a testing matrix plus CI gate descriptions.
+3. **Alignment** – Provisioning requirements should reference `hybridcore-provisioners` drafts (opt-in + Puppet modes) and the templates spec to ensure consistent builder expectations. _Plan_: add cross-links and describe how provisioner metadata is consumed.
+4. **Integrity** – No diagrams/workflows detail how provisioning steps plug into CLI/hybridcore, making it hard to review toggles. _Plan_: add a Mermaid diagram showing config → provisioners → packer interactions.
 
 ## Closed Topics
 
 1. **Provisioner testing matrix** – Spec now references lint/test expectations.
-
-Remediation: update provisioning spec with platform-specific requirements, lint/test matrices, and cross-references to toggles/Puppet modes drafts.

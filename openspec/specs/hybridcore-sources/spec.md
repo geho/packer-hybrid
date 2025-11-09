@@ -3,7 +3,9 @@
 ## Purpose
 
 Define how `hybridcore.sources` manages plugin/example repositories, metadata, auditing, and tests, building on the umbrella spec. Reference: [specs/hybridcore/spec.md](openspec/specs/hybridcore/spec.md)
+
 ## Requirements
+
 ### Requirement: Repository Lifecycle & Concurrency
 
 `hybridcore-sources` SHALL manage repositories under `sources/` with a deterministic lifecycle:
@@ -66,6 +68,15 @@ Spec SHALL reference metadata schema examples for CLI visibility.
 
 - **WHEN** CLI renders status output
 - **THEN** it MUST rely on the documented schema sample.
+
+### Requirement: Open Issues Tracking
+
+The hybridcore-sources spec SHALL keep a `## Open Issues` section pointing to `docs/spec-remediations/hybridcore-sources-remediations.md`. Assessments MUST summarize outstanding gaps per dimension in that doc and cross-reference it from the spec.
+
+#### Scenario: Remediation linkage
+
+- **WHEN** a spec assessment uncovers deviations for the hybridcore-sources spec
+- **THEN** contributors SHALL update `docs/spec-remediations/hybridcore-sources-remediations.md` and refresh the spec's `## Open Issues` pointer before merging changes.
 
 ## ADDED Requirements
 

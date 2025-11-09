@@ -3,7 +3,9 @@
 ## Purpose
 
 Define the multi-cloud template layout (common/platform HCL, vars, scripts, configs, artifacts, state) plus validation/drift rules so Proxmox, vSphere, and Azure builds stay aligned.
+
 ## Requirements
+
 ### Requirement: Repository Layout
 
 The repository SHALL follow a multi-cloud layout containing `templates/`, `configs/`, `sources/`, `artifacts/`, `logs/`, and `state/`.
@@ -103,6 +105,15 @@ Templates spec SHALL document metadata fields/change detection.
 
 - **WHEN** metadata lacks provisioner info
 - **THEN** change detection MUST refuse to proceed until schema is complete.
+
+### Requirement: Open Issues Tracking
+
+The templates spec SHALL keep a `## Open Issues` section pointing to `docs/spec-remediations/templates-remediations.md`. Assessments MUST summarize outstanding gaps per dimension in that doc and cross-reference it from the spec.
+
+#### Scenario: Remediation linkage
+
+- **WHEN** a spec assessment uncovers deviations for the templates spec
+- **THEN** contributors SHALL update `docs/spec-remediations/templates-remediations.md` and refresh the spec's `## Open Issues` pointer before merging changes.
 
 ## Open Issues
 

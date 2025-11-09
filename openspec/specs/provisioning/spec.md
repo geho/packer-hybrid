@@ -3,7 +3,9 @@
 ## Purpose
 
 Define provisioning expectations for the framework—Ansible-first workflows, optional Puppet support, validation, and shared scripts—so all platforms follow the same hardening model.
+
 ## Requirements
+
 ### Requirement: Ansible-First Provisioning
 
 Ansible (remote or local) SHALL be the default provisioning mechanism for all builders.
@@ -57,6 +59,15 @@ Spec SHALL document lint/test expectations per provisioner/platform.
 
 - **WHEN** Puppet assets change
 - **THEN** the lint/test matrix MUST specify required checks (parser validate, metadata lint, packer validate).
+
+### Requirement: Open Issues Tracking
+
+The provisioning spec SHALL keep a `## Open Issues` section pointing to `docs/spec-remediations/provisioning-remediations.md`. Assessments MUST summarize outstanding gaps per dimension in that doc and cross-reference it from the spec.
+
+#### Scenario: Remediation linkage
+
+- **WHEN** a spec assessment uncovers deviations for the provisioning spec
+- **THEN** contributors SHALL update `docs/spec-remediations/provisioning-remediations.md` and refresh the spec's `## Open Issues` pointer before merging changes.
 
 ## Open Issues
 

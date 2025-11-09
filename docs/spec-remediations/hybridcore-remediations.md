@@ -2,7 +2,9 @@
 
 ## Open Topics
 
-1. **Duplicates / Redundancies** – Review remaining module-specific requirements in the umbrella spec and convert any lingering duplication into links.
+1. **Completeness / Integrity** – The "Module Registry & Naming" requirement references a table that never materialized. _Plan_: add the registry table with module name, spec path, implementation status, and remediation draft link so onboarding changes remain auditable.
+2. **Alignment** – The umbrella spec does not summarize which module `### Open Issues` are outstanding, so readers must jump between files manually. _Plan_: add a matrix mapping each module to its remediation doc and highlight cross-cutting issues (e.g., config ↔ templates drift).
+3. **Duplicates / Redundancies** – Review remaining module-specific requirements in the umbrella spec and convert any lingering duplication into links rather than re-describing module behaviour.
 
 ## Closed Topics
 

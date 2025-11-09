@@ -3,7 +3,9 @@
 ## Purpose
 
 Describe the hybridcore package architecture, module boundaries, and diagrams so CLI/Django consumers rely on a shared stdlib-only orchestration layer for config, sources, templates, provisioners, packer, state, and logs.
+
 ## Requirements
+
 ### Requirement: Module Boundaries
 
 `hybridcore` SHALL provide distinct stdlib-only modules for `config`, `sources`, `templates`, `provisioners`, `packer`, `state`, and `logs`.
@@ -205,6 +207,15 @@ The new orchestration diagram (`specs/hybridcore/orchestration-flow.md`) SHALL a
 
 - **WHEN** module flows change
 - **THEN** the orchestration diagram MUST be updated and referenced from the spec.
+
+### Requirement: Open Issues Tracking
+
+The hybridcore spec SHALL keep a `## Open Issues` section pointing to `docs/spec-remediations/hybridcore-remediations.md`. Assessments MUST summarize outstanding gaps per dimension in that doc and cross-reference it from the spec.
+
+#### Scenario: Remediation linkage
+
+- **WHEN** a spec assessment uncovers deviations for the hybridcore spec
+- **THEN** contributors SHALL update `docs/spec-remediations/hybridcore-remediations.md` and refresh the spec's `## Open Issues` pointer before merging changes.
 
 ## Open Issues
 

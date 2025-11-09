@@ -1,7 +1,9 @@
 ## Purpose
 
 Document how `hybridcore.provisioners` structures Ansible/Puppet assets, enforces toggles, compatibility, artifacts, and testing expectations. Reference: [specs/hybridcore/spec.md](openspec/specs/hybridcore/spec.md)
+
 ## Requirements
+
 ### Requirement: Provisioner Layout & Toggles
 
 `hybridcore-provisioners` SHALL describe Ansible and Puppet structures on disk:
@@ -50,6 +52,15 @@ Spec SHALL document Puppet agent modes, opt-in precedence, and SSH fallback beha
 
 - **WHEN** operators choose `puppet.mode=server`
 - **THEN** the spec MUST describe required assets/secrets and fallback rules.
+
+### Requirement: Open Issues Tracking
+
+The hybridcore-provisioners spec SHALL keep a `## Open Issues` section pointing to `docs/spec-remediations/hybridcore-provisioners-remediations.md`. Assessments MUST summarize outstanding gaps per dimension in that doc and cross-reference it from the spec.
+
+#### Scenario: Remediation linkage
+
+- **WHEN** a spec assessment uncovers deviations for the hybridcore-provisioners spec
+- **THEN** contributors SHALL update `docs/spec-remediations/hybridcore-provisioners-remediations.md` and refresh the spec's `## Open Issues` pointer before merging changes.
 
 ## ADDED Requirements
 
