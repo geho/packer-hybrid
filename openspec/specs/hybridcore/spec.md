@@ -190,3 +190,7 @@ Each module spec MUST link back to this umbrella file and describe its own data 
 
 - **WHEN** a new hybridcore module (e.g., `metrics`) is introduced
 - **THEN** contributors MUST create `specs/hybridcore-metrics/spec.md`, reference it from this umbrella spec, and follow the naming convention `hybridcore-<module>`.
+
+## Open Issues
+
+See `docs/spec-remediations/hybridcore-remediations.md`.

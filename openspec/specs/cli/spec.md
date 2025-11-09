@@ -157,3 +157,7 @@ Unit tests SHALL cover argument parsing, hybridcore integration points, and erro
 
 - **WHEN** `make test-cli` runs
 - **THEN** it MUST execute unit tests for command parsers plus invoke `packer fmt -check`/`packer validate` on sample templates, failing if verification gates are skipped.
+
+## Open Issues
+
+See `docs/spec-remediations/cli-remediations.md`.

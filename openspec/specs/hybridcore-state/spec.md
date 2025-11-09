@@ -69,3 +69,7 @@ Crash recovery MUST detect leftover `.tmp` files, log warnings, and attempt auto
 
 - **WHEN** `state/config/dev.json` is truncated
 - **THEN** the CLI check MUST fail with remediation guidance, and automated recovery SHALL restore from the latest good backup when available.
+
+## Open Issues
+
+See `docs/spec-remediations/hybridcore-state-remediations.md`.

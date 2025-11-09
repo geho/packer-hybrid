@@ -90,3 +90,7 @@ Any confirmed or suspected leak SHALL be documented under `docs/secrets/incident
 
 - **WHEN** gitleaks flags a credential
 - **THEN** the owner MUST revoke it in the secret manager, add an incident entry, ensure dummy data replaces the leaked value for tests, and link the incident to any affected PR or issue.
+
+## Open Issues
+
+See `docs/spec-remediations/security-remediations.md`.

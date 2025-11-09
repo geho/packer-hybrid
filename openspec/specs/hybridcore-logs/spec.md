@@ -61,3 +61,7 @@ Additional sinks (JSON, syslog, cloud log shippers) MUST be registered via `regi
 
 - **WHEN** `register_sink("json")` is enabled
 - **THEN** the JSON payload MUST include the canonical fields plus structured context, while the console/file handlers continue emitting the original bracketed format to prevent tooling regressions.
+
+## Open Issues
+
+See `docs/spec-remediations/hybridcore-logs-remediations.md`.

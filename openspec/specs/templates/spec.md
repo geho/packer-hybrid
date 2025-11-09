@@ -96,3 +96,7 @@ The repository SHALL continue to use `artifacts/` (not `builds/`) for build outp
 
 - **WHEN** the CLI detects uncommitted template changes or state drift
 - **THEN** it MUST refuse to run `build`/`publish` until resolved.
+
+## Open Issues
+
+See `docs/spec-remediations/templates-remediations.md`.

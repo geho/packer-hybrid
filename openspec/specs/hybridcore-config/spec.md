@@ -77,3 +77,7 @@ Adding new inputs or environments SHALL follow this checklist:
 - **THEN** the contributor MUST patch the schema, add `templates/qa/.auto.pkrvars.hcl` fixtures, document the input expectations, and ensure CI includes `qa` in regression suites.
 
 The contributor workflow is summarized in `specs/hybridcore-config/config-extendability.md`.
+
+## Open Issues
+
+See `docs/spec-remediations/hybridcore-config-remediations.md`.

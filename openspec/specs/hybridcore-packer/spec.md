@@ -67,3 +67,7 @@ Testing SHALL cover:
 
 - **WHEN** upgrading packer from `1.14.x` to `1.15.x`
 - **THEN** CI MUST run the integration suite + manifest diffs, and the spec MUST document required sign-offs before merging the upgrade.
+
+## Open Issues
+
+See `docs/spec-remediations/hybridcore-packer-remediations.md`.

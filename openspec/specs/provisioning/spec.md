@@ -50,3 +50,7 @@ Scripts under `templates/scripts/{linux,windows}` SHALL be reusable across platf
 
 - **WHEN** both Proxmox and vSphere builders need the same hardening script
 - **THEN** they MUST reference the common script via `templatefile("templates/scripts/linux/hardening.sh", ...)` instead of duplicating content.
+
+## Open Issues
+
+See `docs/spec-remediations/provisioning-remediations.md`.

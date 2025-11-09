@@ -82,6 +82,6 @@ See `specs/hybridcore-templates/testing-matrix.md`.
 - **WHEN** a builder HCL changes without updating the manifest/checksum
 - **THEN** change detection MUST fail and instruct the contributor to regenerate manifests before merging.
 
-### Open Issues
+## Open Issues
 
 OS Image variant taxonomy, checksum cache policies, metadata schema completeness, change-detection signals, and state sync requirements remain open. See `docs/drafts/templates-spec-gaps.md`.

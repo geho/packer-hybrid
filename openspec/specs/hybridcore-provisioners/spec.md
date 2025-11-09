@@ -61,3 +61,7 @@ See `specs/hybridcore-provisioners/testing-matrix.md` for required combinations.
 
 - **WHEN** a change touches Puppet manifests
 - **THEN** CI MUST run `puppet parser validate`, dual-mode packer validate, and record results in the testing matrix to prove both enable/disable paths.
+
+## Open Issues
+
+See `docs/spec-remediations/hybridcore-provisioners-remediations.md`.

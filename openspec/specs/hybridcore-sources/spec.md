@@ -67,3 +67,7 @@ See `specs/hybridcore-sources/testing-matrix.md`.
 
 - **WHEN** git returns non-zero exit code
 - **THEN** unit tests MUST assert that stderr/stdout and remediation hints propagate.
+
+## Open Issues
+
+See `docs/spec-remediations/hybridcore-sources-remediations.md`.
