@@ -3,9 +3,7 @@
 ## Purpose
 
 Define the multi-cloud template layout (common/platform HCL, vars, scripts, configs, artifacts, state) plus validation/drift rules so Proxmox, vSphere, and Azure builds stay aligned.
-
 ## Requirements
-
 ### Requirement: Repository Layout
 
 The repository SHALL follow a multi-cloud layout containing `templates/`, `configs/`, `sources/`, `artifacts/`, `logs/`, and `state/`.
@@ -99,21 +97,12 @@ The repository SHALL continue to use `artifacts/` (not `builds/`) for build outp
 
 ### Requirement: Template Metadata & Change Detection
 
-Templates SHALL maintain metadata fields (provisioners, configs, scripts, dependencies, variant info) and change-detection rules linking manifests/HCL diffs to state updates so partial updates are blocked.
+Templates spec SHALL document metadata fields/change detection.
 
 #### Scenario: Metadata completeness
 
-- **WHEN** builder metadata lacks provisioner information
-- **THEN** change detection MUST refuse to proceed until the metadata schema includes those fields.
-
-### Requirement: Template Metadata & Change Detection
-
-Templates SHALL maintain metadata (provisioners, configs, scripts, dependencies, variant info) and change-detection rules tying manifests/HCL diffs to state updates so partial updates are blocked.
-
-#### Scenario: Metadata completeness
-
-- **WHEN** a builder metadata entry is missing provisioner references
-- **THEN** the spec MUST require metadata schemas to include those fields and refuse change detection until completed.
+- **WHEN** metadata lacks provisioner info
+- **THEN** change detection MUST refuse to proceed until schema is complete.
 
 ## Open Issues
 
