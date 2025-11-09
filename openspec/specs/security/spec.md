@@ -3,9 +3,7 @@
 ## Purpose
 
 Capture verification gates, secrets/IAM policies, documentation expectations, and proposal governance so every change meets the project’s security and compliance bar.
-
 ## Requirements
-
 ### Requirement: Quality Gate Checklist
 
 Every change SHALL run `prettier --write` (or `--check`), `python -m compileall`/unit tests, and `packer fmt -check` plus `packer validate` for affected builders. Drift detection via `packer-hybrid status` MUST precede `build`/`publish`.
@@ -90,6 +88,15 @@ Any confirmed or suspected leak SHALL be documented under `docs/secrets/incident
 
 - **WHEN** gitleaks flags a credential
 - **THEN** the owner MUST revoke it in the secret manager, add an incident entry, ensure dummy data replaces the leaked value for tests, and link the incident to any affected PR or issue.
+
+### Requirement: Supply Chain Scanning & SBOM
+
+Security spec SHALL document scanning cadence and SBOM requirements.
+
+#### Scenario: Weekly scanning
+
+- **WHEN** the scheduled scan runs
+- **THEN** `scripts/scan-supply-chain.sh` MUST execute, attach the SBOM, and record results.
 
 ## Open Issues
 
