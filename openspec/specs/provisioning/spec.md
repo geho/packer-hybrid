@@ -3,9 +3,7 @@
 ## Purpose
 
 Define provisioning expectations for the framework—Ansible-first workflows, optional Puppet support, validation, and shared scripts—so all platforms follow the same hardening model.
-
 ## Requirements
-
 ### Requirement: Ansible-First Provisioning
 
 Ansible (remote or local) SHALL be the default provisioning mechanism for all builders.
@@ -50,6 +48,15 @@ Scripts under `templates/scripts/{linux,windows}` SHALL be reusable across platf
 
 - **WHEN** both Proxmox and vSphere builders need the same hardening script
 - **THEN** they MUST reference the common script via `templatefile("templates/scripts/linux/hardening.sh", ...)` instead of duplicating content.
+
+### Requirement: Provisioner Testing Matrix
+
+Spec SHALL document lint/test expectations per provisioner/platform.
+
+#### Scenario: Matrix enforcement
+
+- **WHEN** Puppet assets change
+- **THEN** the lint/test matrix MUST specify required checks (parser validate, metadata lint, packer validate).
 
 ## Open Issues
 
