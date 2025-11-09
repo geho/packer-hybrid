@@ -1,9 +1,9 @@
-# meta Specification
+## MODIFIED Requirements
 
-## Purpose
+### Purpose
 
-TBD - created by archiving change add-spec-assessment-remediation. Update Purpose after archive.
-## Requirements
+Replace the placeholder Purpose with a statement describing the assessment/remediation charter referencing governance policies.
+
 ### Requirement: Spec Assessment Workflow
 
 Assessments SHALL run at least quarterly under the release captain, record ownership, and continue to use `docs/spec-remediations/` drafts.
@@ -21,16 +21,3 @@ Remediation workflow MUST list diagrams/tests touched and enforce documentation 
 
 - **WHEN** `/prompts:openspec-apply <change-id>` completes
 - **THEN** the change description MUST call out any diagrams/tests updated (or explicitly say "none") before archiving.
-
-### Requirement: Open Issues Tracking
-
-The meta spec SHALL expose a `## Open Issues` section linking to `docs/spec-remediations/meta-remediations.md` so assessments/remediations remain discoverable at the repository-policy level.
-
-#### Scenario: Meta remediations
-
-- **WHEN** assessment gaps are logged for meta workflows
-- **THEN** contributors MUST update `docs/spec-remediations/meta-remediations.md` and ensure the meta spec’s `## Open Issues` section references it until the work is complete.
-
-## Open Issues
-
-See `docs/spec-remediations/meta-remediations.md`.

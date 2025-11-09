@@ -24,12 +24,12 @@ Temporary drafts MUST be promoted or removed once the corresponding spec merges;
 
 ### Requirement: Prompt Traceability
 
-Reusable prompts under `docs/proposals/` MUST link to the latest approved spec that justifies their guidance.
+Prompts MUST cite both the governing spec and the relevant `docs/spec-remediations/<spec>-remediations.md` entry when communicating assessment/remediation work.
 
-#### Scenario: Prompt reuse
+#### Scenario: Prompt + remediation linkage
 
-- **WHEN** a contributor copies a prompt for a new proposal
-- **THEN** the prompt MUST already contain a link to the canonical spec, ensuring reviewers can verify the prompt reflects current requirements.
+- **WHEN** a contributor authors a spec-remediation prompt
+- **THEN** it MUST link to the canonical spec and the active remediation draft before sharing.
 
 ### Requirement: Version-Control Boundaries
 
@@ -42,22 +42,12 @@ Git-tracked content SHALL include templates, scripts, specs, diagrams, and wizar
 
 ### Requirement: Docstring Coverage
 
-All Python modules, classes, and public functions SHALL include docstrings that: (a) cite the driving spec/diagram IDs, (b) summarize behaviour, inputs, and outputs, and (c) describe side effects or external resources.
+Missing spec references in public docstrings SHALL be treated as high severity: lint/CI MUST fail and reviewers MUST block merging (or record a deviation) until docstrings comply.
 
-#### Scenario: Module/class/function docstrings
+#### Scenario: Docstring severity enforcement
 
-- **WHEN** a contributor adds `tools/packer-hybrid/sync.py`
-- **THEN** the module-level docstring MUST list the governing spec (e.g., `specs/cli/spec.md#requirement-deterministic-command-surface`), each class docstring MUST cover responsibilities/mixins used, and function docstrings MUST describe parameters + return values, as illustrated:
-
-```python
-"""Sync subcommands (spec: specs/cli/spec.md#deterministic)."""
-
-class SourceSyncCommand(CommandMixin):
-    """Drive sources sync per specs/hybridcore/spec.md#requirement-source-management."""
-
-    def run(self, args: argparse.Namespace) -> None:
-        """Fetch plugins and exit non-zero on drift."""
-```
+- **WHEN** CI detects a public docstring without a spec link
+- **THEN** the build MUST fail and reviewers require either a fix or a documented deviation.
 
 ### Requirement: Inline Comment Discipline
 
@@ -374,6 +364,15 @@ The governance spec SHALL expose a `## Open Issues` section that links to `docs/
 
 - **WHEN** an assessment surfaces a governance policy gap
 - **THEN** the governance spec MUST point readers to `docs/spec-remediations/governance-remediations.md` until the remediation is implemented.
+
+### Requirement: Diagram Verification Workflow
+
+Governance SHALL require a checklist + CI hook ensuring every spec diagram update also refreshes linked docs; CI MUST fail when diagram sources change without doc references.
+
+#### Scenario: Diagram linkage review
+
+- **WHEN** a PR edits a Mermaid file under `specs/`
+- **THEN** the checklist and CI hook MUST confirm docs reference the updated diagram before merge.
 
 ## Open Issues
 
