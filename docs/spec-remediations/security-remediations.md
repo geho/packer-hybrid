@@ -6,6 +6,7 @@
 2. **Completeness** – No coverage of supply-chain scanning (sources, templates) or SBOM requirements. _Plan_: document mandatory scanners, outputs, and CI gating.
 3. **Alignment / Duplicates** – Security spec duplicates CLI/packer verification gates instead of referencing those specs. _Plan_: replace duplicated text with references and describe how security validates the gates.
 4. **Integrity** – There is no defined severity/triage rubric tying incidents back to module Open Issues, so escalation is ad hoc. _Plan_: add severity levels, response times, and guidance on when to update module remediation docs.
+5. **Alignment** – Governance now requires diagram verification, but security diagrams live only in docs. _Plan_: migrate them into the spec and ensure docs link back.
 
 ## Closed Topics
 

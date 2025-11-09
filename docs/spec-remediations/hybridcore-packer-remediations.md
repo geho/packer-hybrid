@@ -5,6 +5,7 @@
 1. **Integrity** – Document future drift detection enhancements (incremental hashing) explicitly once design completed. _Plan_: add coverage for per-builder hash manifests and include CI examples.
 2. **Completeness / Alignment** – The spec does not capture how packer orchestration reports status back to CLI/automation (error classes, retry codes). _Plan_: document the result schema and ensure tests assert structure before CLI consumes it.
 3. **Ambiguities** – Exit code and retry guidance is implicit; the spec never explains how packer failures map to CLI-facing status codes or when automatic retries are allowed. _Plan_: add a table describing failure classes, exit codes, and retry policies, plus integration tests.
+4. **Integrity** – There is no requirement covering how packer logs/diagnostics feed into the security retention policy now enforced by governance. _Plan_: add a scenario that shows packer writing log summaries to `state/` so CLI and security can reference them.
 
 ## Closed Topics
 

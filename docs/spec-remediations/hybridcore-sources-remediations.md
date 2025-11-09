@@ -6,6 +6,7 @@
 2. **Integrity** – Override approvals and mirror inventories are not persisted anywhere. _Plan_: require `hybridcore.state` to record overrides plus include validation/tests that fail when metadata is missing.
 3. **Consistency** – Security scanning cadence is recorded in metadata but not tied to the security spec or CLI diagnostics. _Plan_: document how scan status is surfaced to CLI and ensure `diag` bundles include the metadata snapshot.
 4. **Completeness** – Resume/repair workflows for partially-synced repositories are undocumented, leaving operators to improvise. _Plan_: add a scenario for `sources resume`, define required state markers, and include tests that simulate interrupted syncs.
+5. **Integrity** – Governance’s compliance requirements mention override approvals, but the spec never explains how to audit overrides over time. _Plan_: add retention/audit guidance, referencing `security` and `state` specs.
 
 ## Closed Topics
 

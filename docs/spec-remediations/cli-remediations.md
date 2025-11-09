@@ -7,6 +7,7 @@
 3. **Consistency / Duplicates** – Verification gates in CLI still restate large portions of the security spec. _Plan_: replace the duplicated checklist with references into `specs/security/spec.md` and document how CLI enforces those gates rather than redefining them.
 4. **Alignment** – CLI requirements reference hybridcore modules broadly but do not cite the specific `## Open Issues` for config/templates/sources when behaviour overlaps. _Plan_: add explicit cross-links per command so future readers can trace outstanding work in those modules.
 5. **Integrity / Documentation** – The spec’s wizard + command diagrams are the canonical source, yet `docs/wizard-ui.md` and other operator docs still embed outdated ASCII renderings. _Plan_: update the docs to embed the Mermaid sources, link back to the spec, and add a regression test that fails if the diagrams drift.
+6. **Ambiguities** – `clean` describes scopes but never states which artifacts/logs must be preserved for compliance or how it coordinates with security retention rules. _Plan_: extend the requirement with retention scenarios, add a table describing preserved paths, and include tests proving `clean --scope artifacts` does not delete evidence needed by security.
 
 ## Closed Topics
 

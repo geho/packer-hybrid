@@ -6,12 +6,12 @@ TBD - created by archiving change add-spec-assessment-remediation. Update Purpos
 ## Requirements
 ### Requirement: Spec Assessment Workflow
 
-Assessments SHALL run at least quarterly under the release captain, record ownership, and continue to use `docs/spec-remediations/` drafts.
+Assessments SHALL explicitly cover `cli`, every `hybridcore-*` module, `provisioning`, `security`, and `templates`, recording findings in the corresponding `docs/spec-remediations/<spec>-remediations.md` files.
 
-#### Scenario: Quarterly assessment cadence
+#### Scenario: Multi-spec assessment scope
 
-- **WHEN** a quarter ends (or a major release begins)
-- **THEN** the release captain MUST run the assessment workflow, record owners in the remediation drafts, and link them from affected specs.
+- **WHEN** the quarterly assessment runs
+- **THEN** it MUST log deviations for each capability above, update their remediation drafts, and ensure the change tasks reflect the scope before `/prompts:openspec-apply` executes.
 
 ### Requirement: Spec Remediation Execution
 
