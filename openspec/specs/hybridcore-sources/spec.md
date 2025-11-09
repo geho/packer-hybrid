@@ -3,9 +3,7 @@
 ## Purpose
 
 Define how `hybridcore.sources` manages plugin/example repositories, metadata, auditing, and tests, building on the umbrella spec. Reference: [specs/hybridcore/spec.md](openspec/specs/hybridcore/spec.md)
-
 ## Requirements
-
 ### Requirement: Repository Lifecycle & Concurrency
 
 `hybridcore-sources` SHALL manage repositories under `sources/` with a deterministic lifecycle:
@@ -50,6 +48,24 @@ See `specs/hybridcore-sources/recovery-flow.md`.
 
 - **WHEN** cloning aborts mid-way
 - **THEN** the module MUST detect the incomplete repo, clean up, retry (per policy), and log the event.
+
+### Requirement: Air-Gapped Workflows & Overrides
+
+Spec SHALL describe air-gapped workflow guidance and override auditing.
+
+#### Scenario: Air-gap doc
+
+- **WHEN** mirrors/offline bundles are configured
+- **THEN** the spec MUST describe validation and override auditing.
+
+### Requirement: Metadata Schema Reference
+
+Spec SHALL reference metadata schema examples for CLI visibility.
+
+#### Scenario: Schema reference
+
+- **WHEN** CLI renders status output
+- **THEN** it MUST rely on the documented schema sample.
 
 ## ADDED Requirements
 

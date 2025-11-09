@@ -1,8 +1,11 @@
-# Hybridcore Sources Spec Gaps
+# Hybridcore Sources Remediations
 
-1. **Gaps** – Air-gapped workflows (mirrors, offline bundles) lack detail; specify configuration and validation steps.
-2. **Completeness** – Security scanning/auditing for repos not defined; add requirements for scanning cadence and reporting.
-3. **Alignment** – Manual override policies (force-pin SHAs) should align with security/governance specs; currently unspecified.
-4. **Integrity** – Need explicit metadata schema, samples, and CLI visibility requirements.
+## Open Topics
 
-Remediation: augment spec with air-gap procedures, security scanning steps, manual override governance, and metadata schema examples.
+1. **Alignment** – add future references to governance docs for override approval once defined.
+
+## Closed Topics
+
+1. **Air-gapped workflows** – Spec now documents mirrors/offline bundles and override auditing.
+2. **Security scanning** – Scanning cadence recorded in metadata (`scan_status`).
+3. **Metadata schema** – Added schema example reference for CLI visibility.

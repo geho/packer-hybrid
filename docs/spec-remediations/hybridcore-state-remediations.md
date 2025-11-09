@@ -1,7 +1,10 @@
-# Hybridcore State Spec Gaps
+# Hybridcore State Remediations
 
-1. **Gaps** – State spec lacks detailed schema migration tooling guidance (version graph, rollback strategy) and concurrent writer coordination beyond `atomic write` statements.
-2. **Completeness** – No mention of audit logging for state changes or integration with security/compliance requirements.
-3. **Alignment** – Cross-module references (e.g., templates and sources) should specify which state files they update; currently implied but not explicit.
+## Closed Topics
 
-Remediation: add migration workflow details, audit requirements, and explicit references to per-module state interactions.
+1. **Migrations/Audit** – Spec now documents migration toolkit + audit logging.
+2. **Cross-module references** – Added references back to templates remediations.
+
+## Open Topics
+
+1. **Concurrent coordination** – assess if further guidance needed beyond atomic writes once new tooling lands.

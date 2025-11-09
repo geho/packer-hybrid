@@ -3,9 +3,7 @@
 ## Purpose
 
 Describe how `hybridcore.state` stores JSON metadata, handles schema evolution, and provides read/write helpers aligned to the umbrella spec. Reference: [specs/hybridcore/spec.md](openspec/specs/hybridcore/spec.md)
-
 ## Requirements
-
 ### Requirement: Storage Format
 
 `hybridcore-state` SHALL catalog every JSON artifact under `state/`:
@@ -26,19 +24,12 @@ See `specs/hybridcore-state/state-map.md` for the data layout.
 
 ### Requirement: Access APIs & Migrations
 
-The module SHALL expose `read_state(path, schema)` and `write_state(path, payload, schema)` helpers that:
+Requirement SHALL reference migration graph/audit logging details.
 
-- Validate `schema_version` before reads/writes.
-- Apply migrations via `migrate_state(data, from_version, to_version)`; migrations MUST be idempotent and logged.
-- Provide backward compatibility via default populators and `deprecated_fields` shims for external consumers.
-- Emit audit records (command ID, before/after hashes) for every mutation.
+#### Scenario: Migration reference
 
-See `specs/hybridcore-state/state-io.md` for the atomic write flow and `specs/hybridcore-state/migration-workflow.md` for schema upgrade steps.
-
-#### Scenario: Schema upgrade
-
-- **WHEN** `schema_version` increments
-- **THEN** `read_state()` MUST migrate older files transparently, log the upgrade, and write back only after validation succeeds.
+- **WHEN** migrations are updated
+- **THEN** the requirement MUST link to the toolkit + audit logging sections.
 
 ### Requirement: Cross-Module Integrations & Recovery
 
@@ -69,6 +60,15 @@ Crash recovery MUST detect leftover `.tmp` files, log warnings, and attempt auto
 
 - **WHEN** `state/config/dev.json` is truncated
 - **THEN** the CLI check MUST fail with remediation guidance, and automated recovery SHALL restore from the latest good backup when available.
+
+### Requirement: Migration Toolkit & Audit Logging
+
+Spec SHALL describe migration tooling/rollback/audit guidance.
+
+#### Scenario: Toolkit usage
+
+- **WHEN** operators run migrations
+- **THEN** they MUST follow the documented toolkit and audit logging steps.
 
 ## Open Issues
 
