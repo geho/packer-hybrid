@@ -1,8 +1,10 @@
-# Hybridcore Packer Spec Gaps
+# Hybridcore Packer Remediations
 
-1. **Gaps** – Cache invalidation policies (for iso/artifact caches) and OS image variant handling not documented. Need deterministic rules.
-2. **Completeness** – Parallel build orchestration and resource limits lack specifics; add scheduling guidance.
-3. **Alignment** – Cross-module integration with templates/provisioners Open Issues is missing; add references.
-4. **Integrity** – Need Open Issues list for drift detection enhancements (e.g., incremental hashing) and packer upgrade gating details.
+## Open Topics
 
-Remediation: extend spec with cache policies, parallel build constraints, cross-module references, and explicit upgrade validation requirements.
+1. **Integrity** – Document future drift detection enhancements (incremental hashing) explicitly once design completed.
+
+## Closed Topics
+
+1. **Cache/Parallelism** – Spec now covers cache invalidation rules and parallel limits.
+2. **Alignment** – Drift detection requirement references templates/provisioners/state Open Issues.

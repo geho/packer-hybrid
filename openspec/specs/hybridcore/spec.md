@@ -3,9 +3,7 @@
 ## Purpose
 
 Describe the hybridcore package architecture, module boundaries, and diagrams so CLI/Django consumers rely on a shared stdlib-only orchestration layer for config, sources, templates, provisioners, packer, state, and logs.
-
 ## Requirements
-
 ### Requirement: Module Boundaries
 
 `hybridcore` SHALL provide distinct stdlib-only modules for `config`, `sources`, `templates`, `provisioners`, `packer`, `state`, and `logs`.
@@ -174,22 +172,39 @@ sequenceDiagram
 
 ### Requirement: Module Spec Hierarchy
 
-This umbrella spec SHALL remain the high-level description of hybridcore. Detailed contracts for each module MUST live in sibling specs:
+Module specs SHALL link back to the umbrella spec and their `## Open Issues` (tracked in `docs/spec-remediations/<spec>-remediations.md`).
 
-- `specs/hybridcore-config/spec.md`
-- `specs/hybridcore-sources/spec.md`
-- `specs/hybridcore-templates/spec.md`
-- `specs/hybridcore-provisioners/spec.md`
-- `specs/hybridcore-packer/spec.md`
-- `specs/hybridcore-state/spec.md`
-- `specs/hybridcore-logs/spec.md`
+#### Scenario: Linking Open Issues
 
-Each module spec MUST link back to this umbrella file and describe its own data contracts, serialization formats, dependency boundaries, and testing strategy.
+- **WHEN** a module resolves a remediation item
+- **THEN** its spec MUST update `## Open Issues` and the umbrella spec remains the entry point.
 
-#### Scenario: Adding a new module
+### Requirement: Module Registry & Naming
 
-- **WHEN** a new hybridcore module (e.g., `metrics`) is introduced
-- **THEN** contributors MUST create `specs/hybridcore-metrics/spec.md`, reference it from this umbrella spec, and follow the naming convention `hybridcore-<module>`.
+`hybridcore` SHALL maintain the registry table of active/planned modules plus naming guidance; new modules MUST update the table before implementation.
+
+#### Scenario: Registry update
+
+- **WHEN** a `metrics` module is proposed
+- **THEN** the table MUST gain a `hybridcore-metrics` entry with spec path/status before code lands.
+
+### Requirement: Cross-Module Dependency Guidelines
+
+Consumers SHALL call modules only via published APIs, and module specs MUST document inbound/outbound dependencies + Open Issues references.
+
+#### Scenario: Dependency adherence
+
+- **WHEN** the CLI needs template info during `build`
+- **THEN** it MUST call `hybridcore.templates` via its API rather than reaching into internals.
+
+### Requirement: Orchestration Flow
+
+The new orchestration diagram (`specs/hybridcore/orchestration-flow.md`) SHALL accompany the spec and remain up to date.
+
+#### Scenario: Diagram upkeep
+
+- **WHEN** module flows change
+- **THEN** the orchestration diagram MUST be updated and referenced from the spec.
 
 ## Open Issues
 

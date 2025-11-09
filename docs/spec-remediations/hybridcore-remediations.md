@@ -1,11 +1,12 @@
 # Hybridcore Umbrella Spec Gaps
 
-Open items:
+## Open Topics
 
-1. **Module registry gaps** – Umbrella spec does not list upcoming modules (metrics/eventing) or criteria for adding new ones. Add a registry table and naming guidance.
-2. **Ambiguities** – Cross-module dependency rules (who can call `hybridcore.templates`, etc.) are vague. Document APIs/data contracts between modules and CLI/automation.
-3. **Consistency / Alignment** – Umbrella spec should reference each module’s Open Issues to keep alignment visible; currently absent.
-4. **Integrity** – Missing orchestration diagrams showing config→templates→packer→state flow; add or reference existing diagrams to reduce confusion.
-5. **Duplicates / Redundancies** – Some module-specific requirements are duplicated here; convert them into high-level summaries with links to avoid drift.
+1. **Duplicates / Redundancies** – Review remaining module-specific requirements in the umbrella spec and convert any lingering duplication into links.
 
-Remediation: update the umbrella spec with module registry, dependency guidelines, orchestration diagrams, and cross-references to each module’s draft.
+## Closed Topics
+
+1. **Module registry** – Added registry table (with planned modules) plus naming guidance.
+2. **Dependency rules** – Documented cross-module dependency guidelines and referencing module Open Issues.
+3. **Orchestration diagram** – Added `specs/hybridcore/orchestration-flow.md` and referenced it.
+4. **Consistency** – Umbrella spec now references module specs and their remediations/Open Issues.

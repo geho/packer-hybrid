@@ -1,9 +1,7 @@
 ## Purpose
 
 Document how `hybridcore.provisioners` structures Ansible/Puppet assets, enforces toggles, compatibility, artifacts, and testing expectations. Reference: [specs/hybridcore/spec.md](openspec/specs/hybridcore/spec.md)
-
 ## Requirements
-
 ### Requirement: Provisioner Layout & Toggles
 
 `hybridcore-provisioners` SHALL describe Ansible and Puppet structures on disk:
@@ -43,6 +41,15 @@ See `specs/hybridcore-provisioners/artifact-flow.md` for artifact relationships.
 
 - **WHEN** Puppet is enabled for `prod`
 - **THEN** the module MUST produce `puppet.pkrvars.hcl`, update `manifest.json` with module SHAs, and log success/failure with context.
+
+### Requirement: Provisioner Modes & Fallback
+
+Spec SHALL document Puppet agent modes, opt-in precedence, and SSH fallback behaviour.
+
+#### Scenario: Puppet mode selection
+
+- **WHEN** operators choose `puppet.mode=server`
+- **THEN** the spec MUST describe required assets/secrets and fallback rules.
 
 ## ADDED Requirements
 

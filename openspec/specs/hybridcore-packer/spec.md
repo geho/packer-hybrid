@@ -1,9 +1,7 @@
 ## Purpose
 
 Specify how `hybridcore.packer` wraps packer commands, enforces drift detection, tracks artifacts, and validates packer integrations. Reference: [specs/hybridcore/spec.md](openspec/specs/hybridcore/spec.md)
-
 ## Requirements
-
 ### Requirement: Command Wrappers
 
 `hybridcore-packer` SHALL provide wrapper functions `fmt(targets)`, `validate(targets, vars)`, and `build(targets, vars, provisioners)` that:
@@ -23,18 +21,21 @@ See `specs/hybridcore-packer/wrapper-flow.md` for the wrapper/execution sequence
 
 ### Requirement: Drift Detection
 
-Before each `build`, the module SHALL:
+Drift detection SHALL reference templates/provisioners/state Open Issues for alignment.
 
-- Hash the relevant inputs (templates, vars, provisioner assets) and compare against the last successful manifest recorded in `hybridcore.state`.
-- If drift is detected, log the diff, refuse to build, and require `validate` to re-establish trust.
-- After successful `validate`/`build`, update `hybridcore.state` with new hashes and manifests, and emit structured entries to `hybridcore.logs`.
+#### Scenario: Drift reference
 
-See `specs/hybridcore-packer/drift-flow.md` for the comparison process.
+- **WHEN** drift is detected
+- **THEN** the spec MUST point operators to the relevant Open Issues so they can remediate upstream modules.
 
-#### Scenario: Drift refusal
+### Requirement: Cache & Parallelism
 
-- **WHEN** template hashes differ from the last manifest
-- **THEN** the wrapper MUST raise a `DriftDetected` error instructing the operator to run `validate`, log the diff, and avoid executing `build`.
+Packer caches/parallelism SHALL follow the documented invalidation/limit rules.
+
+#### Scenario: Cache invalidation
+
+- **WHEN** templates bump ISO versions
+- **THEN** caches MUST be purged per spec before concurrent builds proceed.
 
 ## ADDED Requirements
 

@@ -3,9 +3,7 @@
 ## Purpose
 
 Outline the logging interface shared across CLI/tests, including formatting, rotation, and redaction, as part of the hybridcore umbrella. Reference: [specs/hybridcore/spec.md](openspec/specs/hybridcore/spec.md)
-
 ## Requirements
-
 ### Requirement: Logger Interface
 
 `hybridcore-logs` SHALL provide `init_logging(env, component, artifact_dir)` that boots loggers for CLI, tests, and background workers before any other module runs. The initializer MUST:
@@ -61,6 +59,15 @@ Additional sinks (JSON, syslog, cloud log shippers) MUST be registered via `regi
 
 - **WHEN** `register_sink("json")` is enabled
 - **THEN** the JSON payload MUST include the canonical fields plus structured context, while the console/file handlers continue emitting the original bracketed format to prevent tooling regressions.
+
+### Requirement: Retention & Audit Alignment
+
+Spec SHALL describe retention policy guidance and linkage to security/CLI flags with scenario(s).
+
+#### Scenario: Retention config
+
+- **WHEN** operators configure retention
+- **THEN** they MUST follow the spec’s guidance on size/time limits and CLI flag propagation.
 
 ## Open Issues
 
