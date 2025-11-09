@@ -3,9 +3,7 @@
 ## Purpose
 
 Describe the hybridcore package architecture, module boundaries, and diagrams so CLI/Django consumers rely on a shared stdlib-only orchestration layer for config, sources, templates, provisioners, packer, state, and logs.
-
 ## Requirements
-
 ### Requirement: Module Boundaries
 
 `hybridcore` SHALL provide distinct stdlib-only modules for `config`, `sources`, `templates`, `provisioners`, `packer`, `state`, and `logs`.
@@ -145,59 +143,48 @@ classDiagram
 
 ### Requirement: Packer-Hybrid Integration Diagram
 
-Dependencies between the CLI entrypoints and hybridcore MUST be documented with a dedicated Mermaid sequence diagram to capture hand-offs.
+The orchestration and sequence diagrams SHALL highlight governance/meta touchpoints (diagram verification, assessment cadence) and docs MUST link back to the spec diagrams to avoid drift.
 
-#### Scenario: Dependency clarity
+#### Scenario: Diagram governance linkage
 
-- **WHEN** engineers investigate coupling between CLI commands and hybridcore functions
-- **THEN** they MUST rely on the diagram below to understand call order and shared assets.
-
-```mermaid
-sequenceDiagram
-  participant CLI as packer-hybrid CLI
-  participant CFG as hybridcore.config
-  participant TMP as hybridcore.templates
-  participant PRV as hybridcore.provisioners
-  participant SRC as hybridcore.sources
-  participant PKR as hybridcore.packer
-  participant ST as hybridcore.state
-  participant LG as hybridcore.logs
-  CLI->>CFG: load env config
-  CFG->>TMP: request builder matrix
-  TMP->>PRV: determine provisioners
-  CLI->>SRC: sync sources
-  CLI->>PKR: run fmt/validate/build
-  PRV-->>PKR: provisioner variables
-  PKR->>LG: stream logs
-  PKR->>ST: update state metadata
-```
+- **WHEN** governance/meta policies change
+- **THEN** the diagrams SHALL show the touchpoints so contributors understand compliance flows.
 
 ### Requirement: Module Spec Hierarchy
 
-Module specs SHALL link back to the umbrella spec and their `## Open Issues` (tracked in `docs/spec-remediations/<spec>-remediations.md`).
+The umbrella spec SHALL provide a matrix summarizing each module’s `## Open Issues` pointer, outstanding themes, and severity so readers do not jump between files blindly.
 
-#### Scenario: Linking Open Issues
+#### Scenario: Matrix upkeep
 
-- **WHEN** a module resolves a remediation item
-- **THEN** its spec MUST update `## Open Issues` and the umbrella spec remains the entry point.
+- **WHEN** module Open Issues change
+- **THEN** the matrix SHALL be updated so umbrella readers see cross-module status at a glance.
 
 ### Requirement: Module Registry & Naming
 
-`hybridcore` SHALL maintain the registry table of active/planned modules plus naming guidance; new modules MUST update the table before implementation.
+The registry SHALL include a table listing each module’s name, spec path, implementation status, and remediation draft link so onboarding stays auditable.
 
-#### Scenario: Registry update
+#### Scenario: Registry visibility
 
-- **WHEN** a `metrics` module is proposed
-- **THEN** the table MUST gain a `hybridcore-metrics` entry with spec path/status before code lands.
+- **WHEN** a new module is proposed or updated
+- **THEN** the table SHALL record its status/spec/remediation link (and PR reference) before code merges.
 
 ### Requirement: Cross-Module Dependency Guidelines
 
-Consumers SHALL call modules only via published APIs, and module specs MUST document inbound/outbound dependencies + Open Issues references.
+Umbrella requirements MUST reference the authoritative module spec/remediation draft instead of duplicating module-level behaviour; cross-module guidance SHALL link to the relevant module documents.
 
-#### Scenario: Dependency adherence
+#### Scenario: Avoid duplication
 
-- **WHEN** the CLI needs template info during `build`
-- **THEN** it MUST call `hybridcore.templates` via its API rather than reaching into internals.
+- **WHEN** the umbrella spec mentions a module’s behaviour
+- **THEN** it SHALL link to the module spec/remediation draft rather than restating the requirement.
+
+### Requirement: Escalation & Severity
+
+Cross-module issues SHALL be assigned a severity (critical/high/medium) with documented response times (24h/3d/1 week respectively) and MUST reference governance/meta policies.
+
+#### Scenario: Escalation rubric
+
+- **WHEN** a critical cross-module issue is recorded
+- **THEN** the release captain SHALL respond within 24h and update the remediation draft + matrix accordingly.
 
 ### Requirement: Orchestration Flow
 
