@@ -23,3 +23,7 @@ Provisioner docs live under [specs/hybridcore-provisioners/artifact-flow.md](ope
 ## Template Metadata & Testing
 
 Template composition references are in [specs/hybridcore-templates/metadata-map.md](openspec/specs/hybridcore-templates/metadata-map.md) and [specs/hybridcore-templates/testing-matrix.md](openspec/specs/hybridcore-templates/testing-matrix.md). Consult them before editing builder HCL or onboarding new platforms.
+
+## Sources Recovery & Testing
+
+For repository lifecycle references, see [specs/hybridcore-sources/recovery-flow.md](openspec/specs/hybridcore-sources/recovery-flow.md) and [specs/hybridcore-sources/testing-matrix.md](openspec/specs/hybridcore-sources/testing-matrix.md).

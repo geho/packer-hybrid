@@ -1,10 +1,4 @@
-# hybridcore-sources Specification
-
-## Purpose
-
-Define how `hybridcore.sources` manages plugin/example repositories, metadata, auditing, and tests, building on the umbrella spec. Reference: [specs/hybridcore/spec.md](openspec/specs/hybridcore/spec.md)
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Repository Lifecycle & Concurrency
 

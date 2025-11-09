@@ -37,3 +37,7 @@ Before toggling provisioners for a platform, consult [specs/hybridcore-provision
 ## Template Composition Flow
 
 Template composition (inventory → common/platform layers → manifests) is illustrated in [specs/hybridcore-templates/composition-flow.md](openspec/specs/hybridcore-templates/composition-flow.md). Use it when onboarding new builders or debugging packer inputs.
+
+## Sources Metadata Flow
+
+See [specs/hybridcore-sources/metadata-flow.md](openspec/specs/hybridcore-sources/metadata-flow.md) to understand how repo pins feed `state/sources.json`, lock files, and dashboards.
