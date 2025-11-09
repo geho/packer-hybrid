@@ -9,3 +9,4 @@
 
 1. **Integrity** – Concurrent coordination guidance is still pending; the spec only mentions atomic renames. _Plan_: add scenarios covering multi-process writers and define lockfile semantics/tests.
 2. **Alignment** – State snapshots do not outline how CLI diagnostics or templates should consume hash metadata. _Plan_: document the schema for `state/packer-hybrid.json`, describe the consumers, and add tests checking for required fields per module.
+3. **Ambiguities** – Schema versioning/back-compat guarantees are unspecified, so operators cannot plan migrations. _Plan_: add a version field, migration steps, and tests that fail if the state file downgrades unexpectedly.

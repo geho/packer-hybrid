@@ -27,3 +27,15 @@ The project SHALL maintain a reuseable remediation workflow that, given a scope 
 - **WHEN** the remediation workflow is triggered for a given scope
 - **THEN** every draft MUST be processed through an OpenSpec change, its spec updated, the draft’s closed section populated, and the change archived.
 
+### Requirement: Open Issues Tracking
+
+The meta spec SHALL expose a `## Open Issues` section linking to `docs/spec-remediations/meta-remediations.md` so assessments/remediations remain discoverable at the repository-policy level.
+
+#### Scenario: Meta remediations
+
+- **WHEN** assessment gaps are logged for meta workflows
+- **THEN** contributors MUST update `docs/spec-remediations/meta-remediations.md` and ensure the meta spec’s `## Open Issues` section references it until the work is complete.
+
+## Open Issues
+
+See `docs/spec-remediations/meta-remediations.md`.

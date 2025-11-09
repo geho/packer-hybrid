@@ -366,3 +366,15 @@ Every capability spec under `openspec/specs/` SHALL include a meaningful Purpose
 - **WHEN** a hybridcore module spec is updated or a new module is added
 - **THEN** the module spec MUST link to `specs/hybridcore/spec.md`, and the umbrella spec MUST reference the module so tooling and readers can trace the hierarchy.
 
+### Requirement: Open Issues Tracking
+
+The governance spec SHALL expose a `## Open Issues` section that links to `docs/spec-remediations/governance-remediations.md` so repository-wide policies carry explicit remediation visibility.
+
+#### Scenario: Governance remediations
+
+- **WHEN** an assessment surfaces a governance policy gap
+- **THEN** the governance spec MUST point readers to `docs/spec-remediations/governance-remediations.md` until the remediation is implemented.
+
+## Open Issues
+
+See `docs/spec-remediations/governance-remediations.md`.
