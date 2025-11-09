@@ -15,3 +15,7 @@ State helpers rely on strict atomic write semantics. See [specs/hybridcore-state
 ## Packer Drift & Artifacts
 
 When touching packer automation, review [specs/hybridcore-packer/drift-flow.md](openspec/specs/hybridcore-packer/drift-flow.md) to understand hash comparison/remediation and [specs/hybridcore-packer/artifact-registry.md](openspec/specs/hybridcore-packer/artifact-registry.md) for how manifests/artifacts feed `hybridcore.state` and CI.
+
+## Provisioner Artifacts & Testing
+
+Provisioner docs live under [specs/hybridcore-provisioners/artifact-flow.md](openspec/specs/hybridcore-provisioners/artifact-flow.md) and [specs/hybridcore-provisioners/testing-matrix.md](openspec/specs/hybridcore-provisioners/testing-matrix.md). Read them before adjusting toggles, vars files, or CI coverage.

@@ -29,3 +29,7 @@ To understand how JSON artifacts under `state/` relate (sources pins, config has
 ## Packer Wrapper Flow
 
 For the execution pipeline (env prep → packer CLI → manifest capture → state/log updates), reference [specs/hybridcore-packer/wrapper-flow.md](openspec/specs/hybridcore-packer/wrapper-flow.md). Use it when reasoning about new flags or automation entrypoints.
+
+## Provisioner Compatibility Matrix
+
+Before toggling provisioners for a platform, consult [specs/hybridcore-provisioners/compat-matrix.md](openspec/specs/hybridcore-provisioners/compat-matrix.md). It shows supported combinations and extension hooks for future tools.

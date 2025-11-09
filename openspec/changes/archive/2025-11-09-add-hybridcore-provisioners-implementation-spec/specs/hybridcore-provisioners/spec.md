@@ -1,8 +1,4 @@
-## Purpose
-
-Document how `hybridcore.provisioners` structures Ansible/Puppet assets, enforces toggles, compatibility, artifacts, and testing expectations. Reference: [specs/hybridcore/spec.md](openspec/specs/hybridcore/spec.md)
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Provisioner Layout & Toggles
 
