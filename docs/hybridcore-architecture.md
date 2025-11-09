@@ -33,3 +33,7 @@ For the execution pipeline (env prep → packer CLI → manifest capture → sta
 ## Provisioner Compatibility Matrix
 
 Before toggling provisioners for a platform, consult [specs/hybridcore-provisioners/compat-matrix.md](openspec/specs/hybridcore-provisioners/compat-matrix.md). It shows supported combinations and extension hooks for future tools.
+
+## Template Composition Flow
+
+Template composition (inventory → common/platform layers → manifests) is illustrated in [specs/hybridcore-templates/composition-flow.md](openspec/specs/hybridcore-templates/composition-flow.md). Use it when onboarding new builders or debugging packer inputs.

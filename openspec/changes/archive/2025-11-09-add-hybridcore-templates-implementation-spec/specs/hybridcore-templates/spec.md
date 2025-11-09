@@ -1,10 +1,4 @@
-# hybridcore-templates Specification
-
-## Purpose
-
-Capture the contracts for `hybridcore.templates`—builder inventory, composition outputs, metadata, onboarding, and testing—while referencing the umbrella hybridcore spec. Reference: [specs/hybridcore/spec.md](openspec/specs/hybridcore/spec.md)
-
-## Requirements
+## MODIFIED Requirements
 
 ### Requirement: Builder Inventory & Layout
 

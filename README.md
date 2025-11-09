@@ -19,3 +19,7 @@ When touching packer automation, review [specs/hybridcore-packer/drift-flow.md](
 ## Provisioner Artifacts & Testing
 
 Provisioner docs live under [specs/hybridcore-provisioners/artifact-flow.md](openspec/specs/hybridcore-provisioners/artifact-flow.md) and [specs/hybridcore-provisioners/testing-matrix.md](openspec/specs/hybridcore-provisioners/testing-matrix.md). Read them before adjusting toggles, vars files, or CI coverage.
+
+## Template Metadata & Testing
+
+Template composition references are in [specs/hybridcore-templates/metadata-map.md](openspec/specs/hybridcore-templates/metadata-map.md) and [specs/hybridcore-templates/testing-matrix.md](openspec/specs/hybridcore-templates/testing-matrix.md). Consult them before editing builder HCL or onboarding new platforms.
