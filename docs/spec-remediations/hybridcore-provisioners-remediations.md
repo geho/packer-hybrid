@@ -2,13 +2,12 @@
 
 ## Open Topics
 
-1. **Gaps** – Puppet agent modes (`standalone`, `apply`, `server`) and Ansible/Puppet opt-in precedence live only in `docs/drafts/ansible-puppet-opt-in.md` and `docs/drafts/puppet-agent-modes.md`. _Plan_: merge the draft content into the spec, add mode selection scenarios, and document validation gates for each combination.
-2. **Completeness** – There are no requirements covering SSH-only fallback, secrets handling per provisioner, or the asset validation pipeline (lint/unit tests for roles/modules). _Plan_: add a requirement per provisioner stack plus CI coverage.
-3. **Alignment** – Provisioner toggles do not cross-reference config/templates Open Issues, so drift between vars/templates goes unnoticed. _Plan_: explicitly link to those specs and define how provisioner metadata is consumed.
-4. **Integrity** – No diagrams or workflows show enable/disable flows, making it hard to reason about toggles. _Plan_: add a Mermaid diagram (CLI → hybridcore.provisioners → packer variables) and link it from the spec.
-5. **Duplicates / Consistency** – The spec repeats provisioning-spec onboarding steps (linting, secrets handling) instead of referencing them, which invites drift. _Plan_: collapse the duplicated text into references and add a shared checklist both specs point to.
-6. **Alignment** – Governance now enforces diagram verification, but the provisioner toggle diagrams are only described textually. _Plan_: add referenced diagrams under `specs/hybridcore-provisioners/` and make docs embed them.
+1. _None – new gaps will be recorded during the next assessment._
 
 ## Closed Topics
 
-1. _None yet – tracked once the first remediation merges._
+1. **Gaps** – `openspec/specs/hybridcore-provisioners/spec.md#requirement-provisioner-layout--toggles` now defines config vs CLI precedence, SSH fallback, and references the toggle-flow diagram; Puppet modes moved from drafts into `#requirement-provisioner-modes--fallback` with concrete scenarios (`remediate-hybridcore-provisioners-2025-11`).
+2. **Completeness** – Provisioner-specific secrets and validation pipelines are captured in `#requirement-provisioner-secrets--validation-pipeline`, tying lint/unit tests plus security spec references to each toggle (`remediate-hybridcore-provisioners-2025-11`).
+3. **Alignment** – Drift detection against config/templates is enforced via `#requirement-provisioner-alignment--drift-detection` and the new metadata propagation diagram, ensuring manifests stay in sync (`remediate-hybridcore-provisioners-2025-11`).
+4. **Integrity / Diagrams** – Spec-hosted diagrams (`toggle-flow.md`, `metadata-propagation.md`) live under `openspec/specs/hybridcore-provisioners/` and docs link back per governance (`remediate-hybridcore-provisioners-2025-11`).
+5. **Consistency** – The spec references provisioning/security requirements instead of duplicating onboarding steps, and the remediation doc remains the authoritative Open Issues pointer (`remediate-hybridcore-provisioners-2025-11`).
