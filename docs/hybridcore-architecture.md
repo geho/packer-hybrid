@@ -38,6 +38,14 @@ Before toggling provisioners for a platform, consult [specs/hybridcore-provision
 
 Template composition (inventory → common/platform layers → manifests) is illustrated in [specs/hybridcore-templates/composition-flow.md](openspec/specs/hybridcore-templates/composition-flow.md). Use it when onboarding new builders or debugging packer inputs.
 
+## Template Variant Taxonomy
+
+Canonical builder naming lives in [specs/hybridcore-templates/variant-taxonomy.md](openspec/specs/hybridcore-templates/variant-taxonomy.md). Reference it when adding variants so inventory validation and metadata updates stay aligned.
+
+## Template State Sync Flow
+
+Builder manifests sync back to `hybridcore.state` via the flow in [specs/hybridcore-templates/state-sync-flow.md](openspec/specs/hybridcore-templates/state-sync-flow.md), which shows how compose → state → diagnostics/provisioners coordinate drift detection.
+
 ## Sources Metadata Flow
 
 See [specs/hybridcore-sources/metadata-flow.md](openspec/specs/hybridcore-sources/metadata-flow.md) to understand how repo pins feed `state/sources.json`, lock files, and dashboards.
