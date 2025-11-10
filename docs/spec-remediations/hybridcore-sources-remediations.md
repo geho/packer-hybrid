@@ -2,14 +2,15 @@
 
 ## Open Topics
 
-1. **Alignment** – add future references to governance docs for override approval once defined. _Plan_: pull the policy from `specs/governance/spec.md` into this spec and add a scenario for manual overrides.
-2. **Integrity** – Override approvals and mirror inventories are not persisted anywhere. _Plan_: require `hybridcore.state` to record overrides plus include validation/tests that fail when metadata is missing.
-3. **Consistency** – Security scanning cadence is recorded in metadata but not tied to the security spec or CLI diagnostics. _Plan_: document how scan status is surfaced to CLI and ensure `diag` bundles include the metadata snapshot.
-4. **Completeness** – Resume/repair workflows for partially-synced repositories are undocumented, leaving operators to improvise. _Plan_: add a scenario for `sources resume`, define required state markers, and include tests that simulate interrupted syncs.
-5. **Integrity** – Governance’s compliance requirements mention override approvals, but the spec never explains how to audit overrides over time. _Plan_: add retention/audit guidance, referencing `security` and `state` specs.
+1. _None – new gaps will be recorded during the next assessment._
 
 ## Closed Topics
 
-1. **Air-gapped workflows** – Spec now documents mirrors/offline bundles and override auditing.
-2. **Security scanning** – Scanning cadence recorded in metadata (`scan_status`).
-3. **Metadata schema** – Added schema example reference for CLI visibility.
+1. **Alignment** – Governance override policy is embedded in `openspec/specs/hybridcore-sources/spec.md#requirement-override-approvals--alignment` and backed by the override-flow diagram (`openspec/specs/hybridcore-sources/override-flow.md`) (`remediate-hybridcore-sources-2025-11`).
+2. **Integrity (persistence)** – Overrides/mirror inventories persist in state per `#requirement-persistent-overrides--mirror-inventory`, which blocks workflows when metadata is missing and references hybridcore-state requirements (`remediate-hybridcore-sources-2025-11`).
+3. **Consistency (security scanning)** – `#requirement-metadata-schema-reference` ties `scan_status` to the security spec and CLI diagnostics so diag bundles always include scanning status (`remediate-hybridcore-sources-2025-11`).
+4. **Completeness (resume/repair)** – `#requirement-resume--repair-workflows` defines `sources resume`, state markers, tests, and the resume-flow diagram (`openspec/specs/hybridcore-sources/resume-flow.md`) (`remediate-hybridcore-sources-2025-11`).
+5. **Integrity (audit/retention)** – `#requirement-override-audit--retention` sets retention/audit export requirements aligned with security/state specs (`remediate-hybridcore-sources-2025-11`).
+6. **Air-gapped workflows** – Spec now documents mirrors/offline bundles and override auditing.
+7. **Security scanning** – Scanning cadence recorded in metadata (`scan_status`).
+8. **Metadata schema** – Added schema example reference for CLI visibility.
