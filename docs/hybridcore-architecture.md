@@ -20,7 +20,7 @@ For troubleshooting log initialization, see the dedicated diagram in [specs/hybr
 
 ## Config Pipeline Overview
 
-The end-to-end configuration pipeline (input discovery → schema validation → deterministic merge → render → state manifest updates) is captured in [specs/hybridcore-config/config-pipeline.md](openspec/specs/hybridcore-config/config-pipeline.md). Use this when debugging overlay precedence, unused key warnings, or manifest drift.
+The end-to-end configuration pipeline (input discovery → schema validation → deterministic merge → render → state manifest updates) is captured in [specs/hybridcore-config/config-integrations.md](openspec/specs/hybridcore-config/config-integrations.md). Use this when debugging overlay precedence, unused key warnings, or manifest drift; docs intentionally embed the spec-hosted diagram to satisfy governance requirements.
 
 ## State Artifact Map
 

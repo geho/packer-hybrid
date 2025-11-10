@@ -1,15 +1,9 @@
 ```mermaid
 flowchart LR
-  Vars["hybridcore-config<br/>vars + hashes"]
-  State["hybridcore.state<br/>snapshots"]
-  Templates["hybridcore.templates<br/>composition"]
-  Packer["hybridcore.packer<br/>drift checks"]
-  Provisioners["hybridcore.provisioners<br/>vars toggles"]
-
-  Vars --> State
-  Vars --> Templates
-  Vars --> Packer
-  Vars --> Provisioners
-  State -->|drift signal| Packer
-  Templates -->|needs vars hash| Packer
+  Inputs["Defaults / overlays / CLI answers"] --> Validate["Schema validate"]
+  Validate --> Merge["Merge with precedence"]
+  Merge --> Render["Render .auto.pkrvars.hcl"]
+  Render --> Manifest["Write manifest + provenance"]
+  Manifest --> State["Update state/config/<env>.json"]
+  State --> Drift["Drift detection (templates/state/provisioners)"]
 ```

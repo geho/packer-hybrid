@@ -3,9 +3,7 @@
 ## Purpose
 
 Detail the data contracts, inputs/overlays, and testing expectations for `hybridcore.config`, extending the umbrella hybridcore spec. Reference: [specs/hybridcore/spec.md](openspec/specs/hybridcore/spec.md)
-
 ## Requirements
-
 ### Requirement: Config Inputs & Overlays
 
 `hybridcore-config` SHALL orchestrate the full pipeline:
@@ -26,12 +24,13 @@ See `specs/hybridcore-config/config-pipeline.md` for the end-to-end flow.
 
 ### Requirement: Serialization Format
 
-Rendered vars MUST follow this structure:
+Rendered vars MUST follow this structure and include provenance metadata recorded alongside `state/config/<env>.json`:
 
-- Files live under `templates/<env>/.auto.pkrvars.hcl` (one per target env), plus hashed copies under `state/config/<env>.json` capturing sha256 of the rendered file.
+- Files live under `templates/<env>/.auto.pkrvars.hcl` (one per target env), plus hashed copies under `state/config/<env>.json` capturing sha256 of the rendered file and provenance metadata (source overlay, timestamp, secret indirection notes).
 - Keys are ordered alphabetically within logical groups (builders, provisioners, secrets) and include inline comments referencing the source spec section.
 - Secrets MUST always use indirection (`env("TOKEN")`, vault path placeholders) and reference the associated secret definition doc.
-- Each render MUST update a manifest entry (`state/config/index.json`) containing file paths, hashes, and timestamps.
+- Each render MUST update a manifest entry (`state/config/index.json`) containing file paths, hashes, timestamps, and provenance metadata linking back to source files and remediation drafts.
+- Each render MUST update a manifest entry (`state/config/index.json`) containing file paths, hashes, timestamps, overlay sources, referenced remediation drafts, and secret indirection notes so provenance reviews remain auditable.
 
 #### Scenario: Secret reference
 
@@ -40,27 +39,39 @@ Rendered vars MUST follow this structure:
 
 ### Requirement: Testing
 
-`hybridcore-config` SHALL provide unit tests covering schema validation, overlay precedence, and deterministic output (e.g., hash comparisons). CI MUST run these tests before merging.
+`hybridcore-config` SHALL provide unit tests covering schema validation, overlay precedence, deterministic output (e.g., hash comparisons), and severity mapping (warnings vs failures). CI MUST run these tests before merging.
 
 #### Scenario: Regression prevention
 
 - **WHEN** a contributor modifies overlay logic
 - **THEN** the associated unit tests MUST catch ordering regressions by comparing rendered files against golden fixtures.
 
+### Requirement: Schema Validation Severity
+
+Schema validation SHALL define severity/exit-code mapping for warnings vs failures so CLI callers know how to react consistently.
+
+#### Scenario: Severity mapping
+
+- **WHEN** validation encounters warnings
+- **THEN** it SHALL exit 0 with logged warnings; fatal errors SHALL exit non-zero and tests MUST cover both paths.
+
 ### Requirement: Cross-Module Integrations & Regression Tests
 
-`hybridcore-config` SHALL write state snapshots (hash + provenance) that `hybridcore.state`, `hybridcore.templates`, `hybridcore.packer`, and `hybridcore.provisioners` consume to detect drift. CI MUST run:
+The config spec SHALL reference the templates/state Open Issues (and their remediation drafts) so drift detection contracts stay synchronized.
 
-- Golden fixture comparisons for representative envs/platforms.
-- Hash regression checks comparing new renders vs. stored hashes.
-- Negative overlay tests (missing overrides, conflicting keys) ensuring descriptive errors.
+#### Scenario: Drift linkage
 
-#### Scenario: Drift detection
+- **WHEN** templates or state Open Issues change
+- **THEN** the config spec SHALL reference the updated remediation drafts so operators can trace dependencies.
 
-- **WHEN** template changes alter a vars file hash
-- **THEN** the state snapshot MUST record the new hash, and downstream modules MUST detect drift before packer builds continue.
+### Requirement: Config Pipeline Diagram
 
-Data flow between modules is illustrated in `specs/hybridcore-config/config-integrations.md`.
+The spec SHALL include the Mermaid diagram showing discovery → schema validate → merge/render → state update, and docs MUST link back to it instead of duplicating.
+
+#### Scenario: Diagram availability
+
+- **WHEN** reviewers inspect the config pipeline
+- **THEN** they SHALL use the spec-hosted diagram, and `docs/` MUST reference it instead of duplicating.
 
 ### Requirement: Extendability Checklist
 
@@ -68,7 +79,7 @@ Adding new inputs or environments SHALL follow this checklist:
 
 1. Update the schema with defaults + validation rules.
 2. Document the input (README + spec cross-reference).
-3. Add golden fixtures + regression tests covering positive/negative overlays.
+3. Add golden fixtures + regression tests covering positive/negative overlays and update the config→provisioning mapping table so inputs reference the provisioning spec/templates rather than duplicate schema snippets.
 4. Update onboarding docs so operators know how to provide the new values.
 
 #### Scenario: New environment onboarding
@@ -77,6 +88,15 @@ Adding new inputs or environments SHALL follow this checklist:
 - **THEN** the contributor MUST patch the schema, add `templates/qa/.auto.pkrvars.hcl` fixtures, document the input expectations, and ensure CI includes `qa` in regression suites.
 
 The contributor workflow is summarized in `specs/hybridcore-config/config-extendability.md`.
+
+### Requirement: Provisioning Input Mapping
+
+Config SHALL reference the provisioning spec/templates for input schemas instead of duplicating fields; a mapping table MUST link each config input to its provisioning source of truth.
+
+#### Scenario: Reference over duplication
+
+- **WHEN** config requirements mention provisioning inputs
+- **THEN** they SHALL link to provisioning spec sections/templates rather than restate fields.
 
 ### Requirement: Extendability & Secrets
 
@@ -98,12 +118,12 @@ Spec SHALL document platform/variant overlay precedence with examples.
 
 ### Requirement: Manifest & State Integration
 
-Spec SHALL describe manifest/checksum updates in `state/config/<env>.json` and change detection.
+Rendered configs SHALL emit provenance metadata (hashes, overlay sources, secret indirection notes) and record the data alongside state to support audits.
 
-#### Scenario: Config drift
+#### Scenario: Provenance metadata
 
-- **WHEN** configs change
-- **THEN** state hashes MUST be updated so downstream modules detect drift.
+- **WHEN** configs render `.auto.pkrvars.hcl`
+- **THEN** the manifest SHALL record file hashes, source overlays, and secret references; tests must verify these fields.
 
 ### Requirement: Open Issues Tracking
 
