@@ -2,12 +2,12 @@
 
 ## Open Topics
 
-1. **Gaps** – Secrets rotation workflow, credentials storage for Puppet/Ansible, and incident response procedures are not codified. _Plan_: add requirements for rotation cadence, storage backends, and runbooks.
-2. **Completeness** – No coverage of supply-chain scanning (sources, templates) or SBOM requirements. _Plan_: document mandatory scanners, outputs, and CI gating.
-3. **Alignment / Duplicates** – Security spec duplicates CLI/packer verification gates instead of referencing those specs. _Plan_: replace duplicated text with references and describe how security validates the gates.
-4. **Integrity** – There is no defined severity/triage rubric tying incidents back to module Open Issues, so escalation is ad hoc. _Plan_: add severity levels, response times, and guidance on when to update module remediation docs.
-5. **Alignment** – Governance now requires diagram verification, but security diagrams live only in docs. _Plan_: migrate them into the spec and ensure docs link back.
+1. _None – new gaps will be recorded during the next assessment._
 
 ## Closed Topics
 
-1. _None yet – first remediation will populate this section._
+1. **Security rotation workflow** – `openspec/specs/security/spec.md#requirement-security-rotation-workflow` now references per-platform runbooks, storage backends, and the [rotation workflow diagram](openspec/specs/security/rotation-workflow.md) (`remediate-security-2025-11`).
+2. **Supply-chain scanning & SBOM** – Weekly/pre-release scans plus SPDX outputs are defined in `openspec/specs/security/spec.md#requirement-supply-chain-scanning--sbom`, and artifacts live under `artifacts/security/sbom/<timestamp>.json` (`remediate-security-2025-11`).
+3. **Verification duplicates** – The Quality Gate checklist only references the CLI and hybridcore-packer specs (`openspec/specs/security/spec.md#requirement-quality-gate-checklist`) and records evidence rather than repeating commands (`remediate-security-2025-11`).
+4. **Severity rubric** – The severity table + response targets are codified in `openspec/specs/security/spec.md#requirement-incident-severity--open-issues-tracking`, keeping this file as the Open Issues pointer (`remediate-security-2025-11`).
+5. **Diagram alignment** – `openspec/specs/security/spec.md#requirement-security-diagrams` requires diagrams to live under `openspec/specs/security/` (e.g., [rotation workflow](openspec/specs/security/rotation-workflow.md)) and docs now link back per governance (`remediate-security-2025-11`).

@@ -3,17 +3,24 @@
 ## Purpose
 
 Capture verification gates, secrets/IAM policies, documentation expectations, and proposal governance so every change meets the project’s security and compliance bar.
-
 ## Requirements
+### Requirement: Security Rotation Workflow
+
+Security SHALL document rotation cadence, storage backend, and runbook guidance per platform.
+
+#### Scenario: Rotation runbook
+
+- **WHEN** a platform rotates secrets
+- **THEN** operators SHALL follow the runbook, update `state/secrets.json`, log the rotation in `docs/secrets/rotations/`, and run smoke tests.
 
 ### Requirement: Quality Gate Checklist
 
-Every change SHALL run `prettier --write` (or `--check`), `python -m compileall`/unit tests, and `packer fmt -check` plus `packer validate` for affected builders. Drift detection via `packer-hybrid status` MUST precede `build`/`publish`.
+Security SHALL replace duplicated verification gate text with references into CLI/packer specs, describing how security validates the gates.
 
-#### Scenario: Enforcement
+#### Scenario: Gate linkage
 
-- **WHEN** a contributor submits a change touching templates or provisioning
-- **THEN** they MUST list the verification commands run in the PR description and ensure CI replicates them.
+- **WHEN** security reviews a change
+- **THEN** they SHALL confirm CLI/packer gates ran by referencing the spec sections instead of duplicating requirements.
 
 ### Requirement: Secrets Handling
 
@@ -93,21 +100,30 @@ Any confirmed or suspected leak SHALL be documented under `docs/secrets/incident
 
 ### Requirement: Supply Chain Scanning & SBOM
 
-Security spec SHALL document scanning cadence and SBOM requirements.
+Security SHALL document scanning cadence covering sources/templates, SBOM outputs, and CI gating.
 
-#### Scenario: Weekly scanning
+#### Scenario: Scheduled scanning
 
-- **WHEN** the scheduled scan runs
-- **THEN** `scripts/scan-supply-chain.sh` MUST execute, attach the SBOM, and record results.
+- **WHEN** weekly scans run
+- **THEN** `scripts/scan-supply-chain.sh` SHALL execute, attach SBOM artifacts, and record results.
 
-### Requirement: Open Issues Tracking
+### Requirement: Incident Severity & Open Issues Tracking
 
-The security spec SHALL keep a `## Open Issues` section pointing to `docs/spec-remediations/security-remediations.md`. Assessments MUST summarize outstanding gaps per dimension in that doc and cross-reference it from the spec.
+Security SHALL define severity levels (critical/high/medium) with response targets tied to Open Issues updates.
 
-#### Scenario: Remediation linkage
+#### Scenario: Severity escalation
 
-- **WHEN** a spec assessment uncovers deviations for the security spec
-- **THEN** contributors SHALL update `docs/spec-remediations/security-remediations.md` and refresh the spec's `## Open Issues` pointer before merging changes.
+- **WHEN** a critical incident occurs
+- **THEN** security SHALL respond within 24h, update the severity rubric, and refresh `docs/spec-remediations/security-remediations.md`.
+
+### Requirement: Security Diagrams
+
+Security SHALL ensure diagrams live under `specs/security/` and docs link back per governance.
+
+#### Scenario: Diagram governance
+
+- **WHEN** security processes change
+- **THEN** the spec diagrams MUST be updated and docs SHALL reference the spec-hosted version.
 
 ## Open Issues
 
