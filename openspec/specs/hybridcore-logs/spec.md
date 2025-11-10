@@ -6,12 +6,19 @@ Outline the logging interface shared across CLI/tests, including formatting, rot
 ## Requirements
 ### Requirement: Logger Interface
 
-The spec SHALL ensure diagrams for logging bootstrap live in `specs/hybridcore-logs/` and are referenced from docs per governance.
+`hybridcore-logs` SHALL provide `init_logging(env, component, artifact_dir)` that boots loggers for CLI, tests, and background workers before any other module runs. The initializer MUST:
 
-#### Scenario: Diagram reference
+- Configure a shared formatter `[timestamp] level component command_id message`.
+- Install a console handler (INFO default, DEBUG via `--verbose`) and a rotating file handler under `<artifact_dir>/logs/<component>.log` with size/time rotation thresholds defined in config.
+- Register a hook so `pytest` fixtures and CLI entrypoints share the same handler stack and emit identical prefixes.
+- Stream file handler output to CI artifacts (attach logs directory) and gracefully close handlers on teardown.
 
-- **WHEN** logging bootstrap changes
-- **THEN** the spec diagrams SHALL be updated and docs MUST link back rather than embedding divergent copies.
+Docs referencing logging bootstrap diagrams (e.g., `docs/hybridcore-architecture.md`) SHALL link back to the spec-hosted diagrams in `specs/hybridcore-logs/logging-bootstrap.md` per governance.
+
+#### Scenario: CLI bootstrap
+
+- **WHEN** `hybridcore.cli.main()` executes `init_logging("prod", "cli", artifacts)`
+- **THEN** both stdout and `<artifacts>/logs/cli.log` MUST emit identical formatter strings, use rotation thresholds from config, and register for upload at the end of the run.
 
 ### Requirement: Redaction & Context
 
@@ -54,6 +61,12 @@ Sink extension guidance SHALL include syslog/cloud shippers plus formatter parit
 ### Requirement: Retention & Audit Alignment
 
 Retention requirements SHALL include a mapping table tying CLI flags/env vars to rotation thresholds and referencing the security retention policy.
+
+| Flag/env var | Description | Retention target | Security reference |
+| --- | --- | --- | --- |
+| `--log-keep=<days>` | CLI flag controlling retention window | Days before purge, default 7 | `specs/security/spec.md#requirement-retention-workflow` |
+| `HYBRIDCORE_LOG_MAX_DAYS` | Env var override for retention | Days override for headless jobs | Same as above |
+| `HYBRIDCORE_LOG_MAX_BYTES` | Env var controlling max log size before rotation | Bytes threshold before rotation | `specs/security/spec.md#requirement-quality-gate-checklist` |
 
 #### Scenario: Flag propagation
 

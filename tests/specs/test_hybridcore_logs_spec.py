@@ -10,7 +10,7 @@ class HybridcoreLogsSpecTest(unittest.TestCase):
 
     def test_sink_table_present(self) -> None:
         self.assertIn("register_sink(\"syslog\")", self.text)
-        self.assertIn("cloud payload", self.text)
+        self.assertIn("cloud shippers", self.text)
 
     def test_retention_mapping_present(self) -> None:
         self.assertIn("HYBRIDCORE_LOG_MAX_DAYS", self.text)
@@ -22,7 +22,7 @@ class HybridcoreLogsSpecTest(unittest.TestCase):
 
     def test_context_table_present(self) -> None:
         self.assertIn("correlation_id", self.text)
-        self.assertIn("canonical schema", self.text.lower())
+        self.assertIn("canonical context schema", self.text.lower())
 
 
 if __name__ == "__main__":

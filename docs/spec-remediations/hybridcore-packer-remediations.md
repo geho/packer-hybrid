@@ -2,12 +2,13 @@
 
 ## Open Topics
 
-1. **Integrity** – Document future drift detection enhancements (incremental hashing) explicitly once design completed. _Plan_: add coverage for per-builder hash manifests and include CI examples.
-2. **Completeness / Alignment** – The spec does not capture how packer orchestration reports status back to CLI/automation (error classes, retry codes). _Plan_: document the result schema and ensure tests assert structure before CLI consumes it.
-3. **Ambiguities** – Exit code and retry guidance is implicit; the spec never explains how packer failures map to CLI-facing status codes or when automatic retries are allowed. _Plan_: add a table describing failure classes, exit codes, and retry policies, plus integration tests.
-4. **Integrity** – There is no requirement covering how packer logs/diagnostics feed into the security retention policy now enforced by governance. _Plan_: add a scenario that shows packer writing log summaries to `state/` so CLI and security can reference them.
+1. _None – populated when new hybridcore-packer gaps are identified._
 
 ## Closed Topics
 
-1. **Cache/Parallelism** – Spec now covers cache invalidation rules and parallel limits.
-2. **Alignment** – Drift detection requirement references templates/provisioners/state Open Issues.
+1. **Integrity** – Incremental hash manifests documented (`remediate-hybridcore-packer-2025-11`).
+2. **Completeness / Alignment** – Result schema/exit codes captured for CLI/automation (`remediate-hybridcore-packer-2025-11`).
+3. **Ambiguities** – Exit-code/retry policy table added (`remediate-hybridcore-packer-2025-11`).
+4. **Integrity** – Packer log summaries feed security retention policy (`remediate-hybridcore-packer-2025-11`).
+5. **Cache/Parallelism** – Spec now covers cache invalidation rules and parallel limits.
+6. **Alignment** – Drift detection requirement references templates/provisioners/state Open Issues.
