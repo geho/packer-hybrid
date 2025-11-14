@@ -4,6 +4,16 @@ The rules below are **canonical** and **enforceable**. Terms use RFC‑2119 keyw
 
 ---
 
+<!-- FRAMEWORK:START -->
+
+These instructions are for AI assistants working in this project.
+
+Always open `@/agents/startup.md` on session start.
+
+<!-- FRAMEWORK:END -->
+
+---
+
 <!-- OPENSPEC:START -->
 
 # OpenSpec Instructions

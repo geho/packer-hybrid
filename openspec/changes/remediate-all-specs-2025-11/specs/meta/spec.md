@@ -2,7 +2,7 @@
 
 ### Requirement: Spec Remediation Execution
 
-Add guidance that remediation execution SHALL cover every `docs/spec-remediations/*.md` file in scope, presenting `/prompts:openspec-proposal|apply|archive` commands for operators to run, and tracking status in tasks.md until all drafts are closed or rolled into follow-up work.
+Add guidance that remediation execution SHALL cover every `assessments/2025-11-14-remediation-migration/remediations/*.md` file in scope, presenting `/prompts:openspec-proposal|apply|archive` commands for operators to run, and tracking status in tasks.md until all drafts are closed or rolled into follow-up work.
 
 #### Scenario: Operator-driven execution
 

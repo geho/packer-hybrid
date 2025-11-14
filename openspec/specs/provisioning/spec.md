@@ -69,12 +69,12 @@ The provisioning spec SHALL define OS-specific behaviors (Linux vs Windows) cove
 
 ### Requirement: Open Issues Tracking
 
-The provisioning spec SHALL keep a `## Open Issues` section pointing to `docs/spec-remediations/provisioning-remediations.md`. Assessments MUST summarize outstanding gaps per dimension in that doc and cross-reference it from the spec.
+The provisioning spec SHALL keep a `## Open Issues` section pointing to `assessments/2025-11-14-remediation-migration/remediations/provisioning-remediations.md`. Assessments MUST summarize outstanding gaps per dimension in that doc and cross-reference it from the spec.
 
 #### Scenario: Remediation linkage
 
 - **WHEN** a spec assessment uncovers deviations for the provisioning spec
-- **THEN** contributors SHALL update `docs/spec-remediations/provisioning-remediations.md` and refresh the spec's `## Open Issues` pointer before merging changes.
+- **THEN** contributors SHALL update `assessments/2025-11-14-remediation-migration/remediations/provisioning-remediations.md` and refresh the spec's `## Open Issues` pointer before merging changes.
 
 ### Requirement: Provisioner Metadata Alignment
 
@@ -114,4 +114,4 @@ Provisioning scripts/tests MUST reference the security spec’s retention/secret
 
 ## Open Issues
 
-See `docs/spec-remediations/provisioning-remediations.md`.
+See `assessments/2025-11-14-remediation-migration/remediations/provisioning-remediations.md`.

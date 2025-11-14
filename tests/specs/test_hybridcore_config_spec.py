@@ -9,8 +9,8 @@ class HybridcoreConfigSpecTest(unittest.TestCase):
         self.text = SPEC_PATH.read_text(encoding="utf-8")
 
     def test_references_templates_state_remediations(self) -> None:
-        self.assertIn("docs/spec-remediations/hybridcore-templates-remediations.md", self.text)
-        self.assertIn("docs/spec-remediations/hybridcore-state-remediations.md", self.text)
+        self.assertIn("assessments/2025-11-14-remediation-migration/remediations/hybridcore-templates-remediations.md", self.text)
+        self.assertIn("assessments/2025-11-14-remediation-migration/remediations/hybridcore-state-remediations.md", self.text)
 
     def test_provisioning_mapping_table_present(self) -> None:
         self.assertIn("Provisioning Input Mapping", self.text)

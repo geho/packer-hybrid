@@ -84,13 +84,13 @@ The logs spec SHALL document how log redaction integrates with `diag` bundles an
 
 ### Requirement: Open Issues Tracking
 
-The hybridcore-logs spec SHALL keep a `## Open Issues` section pointing to `docs/spec-remediations/hybridcore-logs-remediations.md`. Assessments MUST summarize outstanding gaps per dimension in that doc and cross-reference it from the spec.
+The hybridcore-logs spec SHALL keep a `## Open Issues` section pointing to `assessments/2025-11-14-remediation-migration/remediations/hybridcore-logs-remediations.md`. Assessments MUST summarize outstanding gaps per dimension in that doc and cross-reference it from the spec.
 
 #### Scenario: Remediation linkage
 
 - **WHEN** a spec assessment uncovers deviations for the hybridcore-logs spec
-- **THEN** contributors SHALL update `docs/spec-remediations/hybridcore-logs-remediations.md` and refresh the spec's `## Open Issues` pointer before merging changes.
+- **THEN** contributors SHALL update `assessments/2025-11-14-remediation-migration/remediations/hybridcore-logs-remediations.md` and refresh the spec's `## Open Issues` pointer before merging changes.
 
 ## Open Issues
 
-See `docs/spec-remediations/hybridcore-logs-remediations.md`.
+See `assessments/2025-11-14-remediation-migration/remediations/hybridcore-logs-remediations.md`.

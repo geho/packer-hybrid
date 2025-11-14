@@ -2,7 +2,7 @@
 
 ## Pre-flight
 
-1. - [ ] Run `openspec list`, `openspec list --specs`, review `openspec/project.md`, and read all `docs/spec-remediations/*.md` drafts.
+1. - [ ] Run `openspec list`, `openspec list --specs`, review `openspec/project.md`, and read all `assessments/2025-11-14-remediation-migration/remediations/*.md` drafts.
 
 ## Execution tracking
 

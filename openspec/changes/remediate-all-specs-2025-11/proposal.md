@@ -6,7 +6,7 @@ The latest assessment identified fresh remediation items for every capability sp
 
 ## Scope
 
-- Drafts: every `docs/spec-remediations/<spec>-remediations.md` file.
+- Drafts: every `assessments/2025-11-14-remediation-migration/remediations/<spec>-remediations.md` file.
 - Specs: cli, governance, hybridcore, hybridcore-config, hybridcore-logs, hybridcore-packer, hybridcore-provisioners, hybridcore-sources, hybridcore-state, hybridcore-templates, meta, provisioning, security, templates.
 
 ## Plan

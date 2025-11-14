@@ -114,7 +114,7 @@ Security SHALL define severity levels (critical/high/medium) with response targe
 #### Scenario: Severity escalation
 
 - **WHEN** a critical incident occurs
-- **THEN** security SHALL respond within 24h, update the severity rubric, and refresh `docs/spec-remediations/security-remediations.md`.
+- **THEN** security SHALL respond within 24h, update the severity rubric, and refresh `assessments/2025-11-14-remediation-migration/remediations/security-remediations.md`.
 
 ### Requirement: Security Diagrams
 
@@ -127,4 +127,4 @@ Security SHALL ensure diagrams live under `specs/security/` and docs link back p
 
 ## Open Issues
 
-See `docs/spec-remediations/security-remediations.md`.
+See `assessments/2025-11-14-remediation-migration/remediations/security-remediations.md`.

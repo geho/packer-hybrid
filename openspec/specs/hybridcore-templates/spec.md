@@ -64,12 +64,12 @@ See `specs/hybridcore-templates/onboarding-checklist.md`.
 
 ### Requirement: Open Issues Tracking
 
-The hybridcore-templates spec SHALL keep a `## Open Issues` section pointing to `docs/spec-remediations/hybridcore-templates-remediations.md`. Assessments MUST summarize outstanding gaps per dimension in that doc and cross-reference it from the spec.
+The hybridcore-templates spec SHALL keep a `## Open Issues` section pointing to `assessments/2025-11-14-remediation-migration/remediations/hybridcore-templates-remediations.md`. Assessments MUST summarize outstanding gaps per dimension in that doc and cross-reference it from the spec.
 
 #### Scenario: Remediation linkage
 
 - **WHEN** a spec assessment uncovers deviations for the hybridcore-templates spec
-- **THEN** contributors SHALL update `docs/spec-remediations/hybridcore-templates-remediations.md` and refresh the spec's `## Open Issues` pointer before merging changes.
+- **THEN** contributors SHALL update `assessments/2025-11-14-remediation-migration/remediations/hybridcore-templates-remediations.md` and refresh the spec's `## Open Issues` pointer before merging changes.
 
 ### Requirement: Variant Naming & Layout
 
@@ -136,4 +136,4 @@ See `specs/hybridcore-templates/testing-matrix.md`.
 
 ## Open Issues
 
-See `docs/spec-remediations/hybridcore-templates-remediations.md` for outstanding work on variant taxonomy, checksum caching, metadata completeness, change-detection signals, and state/state sync requirements.
+See `assessments/2025-11-14-remediation-migration/remediations/hybridcore-templates-remediations.md` for outstanding work on variant taxonomy, checksum caching, metadata completeness, change-detection signals, and state/state sync requirements.

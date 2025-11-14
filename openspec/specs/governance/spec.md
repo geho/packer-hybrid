@@ -24,12 +24,21 @@ Temporary drafts MUST be promoted or removed once the corresponding spec merges;
 
 ### Requirement: Prompt Traceability
 
-Prompts MUST cite both the governing spec and the relevant `docs/spec-remediations/<spec>-remediations.md` entry when communicating assessment/remediation work.
+Prompts MUST cite both the governing spec and the relevant `assessments/2025-11-14-remediation-migration/remediations/<spec>-remediations.md` entry when communicating assessment/remediation work.
 
 #### Scenario: Prompt + remediation linkage
 
 - **WHEN** a contributor authors a spec-remediation prompt
 - **THEN** it MUST link to the canonical spec and the active remediation draft before sharing.
+
+### Requirement: Policy Reference SoT
+
+Repository-wide policy references MUST defer to `agents/startup.md` and the linked `agents/policies/*.md` docs instead of repeating prose inside governance/spec chapters.
+
+#### Scenario: Agents policies as primary reference
+
+- **WHEN** governance cites coding style, commenting, validation, or testing rules
+- **THEN** it SHALL link to `agents/startup.md` (and the downstream `agents/policies/*.md`) instead of duplicating the text inside the spec.
 
 ### Requirement: Version-Control Boundaries
 
@@ -171,52 +180,24 @@ Repos SHALL provide an automated check (e.g., `python tools/check_license_header
 - **WHEN** `npm run lint-docs` or `make lint` runs in CI
 - **THEN** the job MUST run the header checker and block merges if files lack the template or contain stale timestamps/spec references.
 
-### Requirement: Prompt Metadata Block
+### Requirement: Prompt Definition SoT
 
-Every file under `docs/proposals/` SHALL include a metadata block immediately after the prompt line with the following fields:
+Reusable prompts SHALL live exclusively in `.codex/prompts/*.md`. Each file MUST begin with YAML front matter containing `description:` and `argument-hint:` keys, and the body MUST include the guardrails block delimited by `<!-- OPENSPEC:START -->` / `<!-- OPENSPEC:END -->`.
 
-```
-<!--
-Prompt-Source: docs/proposals/<file>.md
-Reference: [specs/<capability>/spec.md#requirement-slug](openspec/specs/<capability>/spec.md#requirement-slug)
-Change-Start: <change-id> <ISO8601 timestamp>
-Change-Archived: <change-id> <ISO8601 timestamp> | PENDING
--->
-```
+#### Scenario: `.codex/prompts` metadata
 
-`Change-Start` records when the proposal change was opened; `Change-Archived` records when it was archived (or `PENDING` if ongoing).
-
-#### Scenario: Prompt metadata example
-
-- **WHEN** `docs/proposals/license-headers-proposal-prompt.md` is updated for change `add-license-header-policy`
-- **THEN** it MUST include:
-
-```
-<!--
-Prompt-Source: docs/proposals/license-headers-proposal-prompt.md
-Reference: [specs/governance/spec.md#requirement-license-header-template](openspec/specs/governance/spec.md#requirement-license-header-template)
-Change-Start: add-license-header-policy 2025-11-08T10:05:00Z
-Change-Archived: add-license-header-policy 2025-11-08T11:15:00Z
--->
-```
-
-### Requirement: Metadata Placement & Updates
-
-The metadata block SHALL sit immediately after the `/prompts:openspec-proposal …` line. When opening a new change, contributors MUST add or update `Change-Start`; once archived, they MUST replace `Change-Archived: … PENDING` with the final change ID + timestamp.
-
-#### Scenario: Ongoing proposal
-
-- **WHEN** a new change `add-cross-check-governance` starts
-- **THEN** the prompt file MUST set `Change-Start: add-cross-check-governance <timestamp>` and `Change-Archived: PENDING` until the change archives.
+- **GIVEN** governance now treats `.codex/prompts/*.md` as the canonical prompt repository
+- **WHEN** maintainers edit a prompt file
+- **THEN** the file MUST keep YAML front matter (`description`, `argument-hint`) and the guardrails block bounded by `<!-- OPENSPEC:START -->` / `<!-- OPENSPEC:END -->`.
 
 ### Requirement: Prompt Metadata Enforcement
 
-CI and pre-commit hooks SHALL run a script (e.g., `python tools/check_prompt_metadata.py`) that ensures each prompt contains the metadata block, ISO timestamps, and matching change IDs. Missing or malformed metadata MUST fail the build.
+CI and pre-commit hooks SHALL run `python tools/check_codex_prompts.py` (or equivalent) to ensure every `.codex/prompts/*.md` file contains valid front matter and guardrails before changes land.
 
-#### Scenario: CI enforcement
+#### Scenario: Automated checks
 
-- **WHEN** `make lint` runs
-- **THEN** it MUST parse each prompt file, confirm the reference link matches the canonical spec, ensure timestamps are ISO8601 UTC, and verify `Change-Archived` is `PENDING` or a valid timestamp; failures block merging.
+- **WHEN** CI or pre-commit runs
+- **THEN** it MUST execute `python tools/check_codex_prompts.py` (or equivalent) so any prompt missing front matter or guardrails fails fast.
 
 ### Requirement: Changelog Format
 
@@ -358,12 +339,12 @@ Every capability spec under `openspec/specs/` SHALL include a meaningful Purpose
 
 ### Requirement: Open Issues Tracking
 
-The governance spec SHALL expose a `## Open Issues` section that links to `docs/spec-remediations/governance-remediations.md` so repository-wide policies carry explicit remediation visibility.
+The governance spec SHALL expose a `## Open Issues` section that links to `assessments/2025-11-14-remediation-migration/remediations/governance-remediations.md` so repository-wide policies carry explicit remediation visibility.
 
 #### Scenario: Governance remediations
 
 - **WHEN** an assessment surfaces a governance policy gap
-- **THEN** the governance spec MUST point readers to `docs/spec-remediations/governance-remediations.md` until the remediation is implemented.
+- **THEN** the governance spec MUST point readers to `assessments/2025-11-14-remediation-migration/remediations/governance-remediations.md` until the remediation is implemented.
 
 ### Requirement: Diagram Verification Workflow
 
@@ -376,4 +357,4 @@ Governance SHALL require a checklist + CI hook ensuring every spec diagram updat
 
 ## Open Issues
 
-See `docs/spec-remediations/governance-remediations.md`.
+See `assessments/2025-11-14-remediation-migration/remediations/governance-remediations.md`.

@@ -19,10 +19,11 @@
 
 ## Project Conventions
 
-Refer to the governance spec for repository-wide policies covering diagram storage/linking, documentation lifecycle, prompt traceability, git-tracked vs generated assets, and the code-comment/docstring guidelines enforced across modules. Reference: [specs/governance/spec.md](openspec/specs/governance/spec.md)
+Refer to the governance spec for repository-wide policies covering diagram storage/linking, documentation lifecycle, prompt traceability, git-tracked vs generated assets, and the code-comment/docstring guidelines enforced across modules. Canonical policy details now live in `agents/startup.md` and its linked `agents/policies/*.md`. Reference: [specs/governance/spec.md](openspec/specs/governance/spec.md)
 
 ### Code Style
 
+- Follow the canonical rules in `agents/startup.md` and its linked `agents/policies/{coding-style,commenting,validation,test-writing}.md`; the bullets below highlight packer-hybrid specifics that extend those policies.
 - All Python sources (including executables in `tools/` without `.py` extension) start with `#!/usr/bin/env python3`, include SPDX license header, UTC timestamp, and references to the driving spec + diagram assets.
 - Favour class-based CLI commands with mixins for shared concerns (logging, filesystem IO, spec lookups). Use `argparse` sub-parsers to expose verbs such as `sync`, `validate`, `build`, `publish`.
 - Standard library only; prefer `pathlib`, `subprocess.run(check=True)`, `dataclasses.dataclass`, `typing.Protocol` to keep code self-documenting. Avoid implicit globals; inject dependencies via constructors/mixins.
@@ -86,6 +87,7 @@ Reference: [specs/provisioning/spec.md](openspec/specs/provisioning/spec.md)
 
 ### Testing Strategy
 
+- Apply the testing/validation guidance defined in `agents/policies/test-writing.md` and `agents/policies/validation.md`; the items below call out additional packer-hybrid requirements.
 - **Unit tests**: Python `unittest` suites for CLI command parsing, mixin behaviour, filesystem interactions (use `tempfile.TemporaryDirectory`), and subprocess wrappers (mocked).
 - **Template tests**: `packer fmt -check` + `packer validate` run per platform/OS combination. CLI exposes `packer-hybrid validate --platform {proxmox,vsphere,azure}` to run targeted checks (docs/OverviewPlugins/09_ValidationAndPluginManagement.md).
 - **Integration smoke tests**: optionally run nightly builds on PR merges using lightweight “dry-run” configs (e.g., minimal Ubuntu) to ensure multi-cloud compatibility like in docs/OverviewPlugins/07_MultiCloudTemplateExample.md.
@@ -93,6 +95,7 @@ Reference: [specs/provisioning/spec.md](openspec/specs/provisioning/spec.md)
 
 ### Git Workflow
 
+- Follow the repository conventions in `agents/policies/conventions.md` for branching, review, and changelog practices; the bullets below outline repo-specific expectations.
 - Trunk-based with short-lived `feature/<scope>` branches feeding PRs. Each PR:
   - References its openspec change or adds one when behaviour shifts.
   - Updates relevant research/doc chapters (docs/OverviewPlugins/_, docs/OverviewExampleRepos/_) when new findings exist.
@@ -144,7 +147,7 @@ Reference: [specs/provisioning/spec.md](openspec/specs/provisioning/spec.md)
   - Problem statement, proposed solution, testing/rollout plan, and back-compat considerations.
   - Cross-links back to `project.md` and other specs it supersedes or complements.
 - Before coding, ensure an approved spec exists (or confirm the change is covered by existing specs). If not, file a `/prompts:openspec-proposal …` request first.
-- Store reusable proposal prompts in `docs/proposals/<topic>-proposal-prompt.md` so future assistants can copy/paste the approved wording without digging through history. When a prompt is used and the spec merges, note the spec link inside the prompt file for traceability.
+- Store reusable proposal prompts in `.codex/prompts/<topic>.md`. When a prompt is processed, update the front matter and metadata within that file; the retired `docs/proposals/` directory remains only in git history for provenance.
 
 ## Future Extensions
 

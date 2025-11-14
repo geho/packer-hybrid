@@ -8,5 +8,5 @@ flowchart LR
   Config --> Drift
   Drift -->|Mismatch| Block["Block build + log remediation"]
   Drift -->|Clean| Approve["Allow packer run"]
-  Manifest --> Security["docs/spec-remediations/... (alignment log)"]
+  Manifest --> Security["assessments/2025-11-14-remediation-migration/remediations/... (alignment log)"]
 ```

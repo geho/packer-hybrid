@@ -15,8 +15,8 @@ class CliSpecIntegrationTest(unittest.TestCase):
         self.assertIn("docs/cli-status-schema.json", self.text)
 
     def test_command_cross_links_present(self) -> None:
-        self.assertIn("docs/spec-remediations/hybridcore-config-remediations.md", self.text)
-        self.assertIn("docs/spec-remediations/hybridcore-templates-remediations.md", self.text)
+        self.assertIn("assessments/2025-11-14-remediation-migration/remediations/hybridcore-config-remediations.md", self.text)
+        self.assertIn("assessments/2025-11-14-remediation-migration/remediations/hybridcore-templates-remediations.md", self.text)
 
 
 if __name__ == "__main__":

@@ -39,12 +39,12 @@ Packer caches/parallelism SHALL follow the documented invalidation/limit rules.
 
 ### Requirement: Open Issues Tracking
 
-The hybridcore-packer spec SHALL keep a `## Open Issues` section pointing to `docs/spec-remediations/hybridcore-packer-remediations.md`. Assessments MUST summarize outstanding gaps per dimension in that doc and cross-reference it from the spec.
+The hybridcore-packer spec SHALL keep a `## Open Issues` section pointing to `assessments/2025-11-14-remediation-migration/remediations/hybridcore-packer-remediations.md`. Assessments MUST summarize outstanding gaps per dimension in that doc and cross-reference it from the spec.
 
 #### Scenario: Remediation linkage
 
 - **WHEN** a spec assessment uncovers deviations for the hybridcore-packer spec
-- **THEN** contributors SHALL update `docs/spec-remediations/hybridcore-packer-remediations.md` and refresh the spec's `## Open Issues` pointer before merging changes.
+- **THEN** contributors SHALL update `assessments/2025-11-14-remediation-migration/remediations/hybridcore-packer-remediations.md` and refresh the spec's `## Open Issues` pointer before merging changes.
 
 ### Requirement: Incremental Hash Manifests
 
@@ -148,4 +148,4 @@ Testing SHALL cover:
 
 ## Open Issues
 
-See `docs/spec-remediations/hybridcore-packer-remediations.md`.
+See `assessments/2025-11-14-remediation-migration/remediations/hybridcore-packer-remediations.md`.

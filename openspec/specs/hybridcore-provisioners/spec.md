@@ -48,12 +48,12 @@ The spec SHALL promote the Puppet agent mode matrix from drafts: `standalone`, `
 
 ### Requirement: Open Issues Tracking
 
-The hybridcore-provisioners spec SHALL keep a `## Open Issues` section pointing to `docs/spec-remediations/hybridcore-provisioners-remediations.md`. Assessments MUST summarize outstanding gaps per dimension in that doc and cross-reference it from the spec.
+The hybridcore-provisioners spec SHALL keep a `## Open Issues` section pointing to `assessments/2025-11-14-remediation-migration/remediations/hybridcore-provisioners-remediations.md`. Assessments MUST summarize outstanding gaps per dimension in that doc and cross-reference it from the spec.
 
 #### Scenario: Remediation linkage
 
 - **WHEN** a spec assessment uncovers deviations for the hybridcore-provisioners spec
-- **THEN** contributors SHALL update `docs/spec-remediations/hybridcore-provisioners-remediations.md` and refresh the spec's `## Open Issues` pointer before merging changes.
+- **THEN** contributors SHALL update `assessments/2025-11-14-remediation-migration/remediations/hybridcore-provisioners-remediations.md` and refresh the spec's `## Open Issues` pointer before merging changes.
 
 ### Requirement: Provisioner Secrets & Validation Pipeline
 
@@ -103,7 +103,7 @@ Provisioner metadata SHALL remain aligned with config (`openspec/specs/hybridcor
 
 - Each toggle SHALL emit metadata to `state/provisioners/<env>/manifest.json` including roles/modules, SHAs, and consumed config overlays.
 - A drift detector SHALL compare manifests with rendered templates/config each time toggles change or `packer-hybrid status` runs, failing the build when mismatches appear and pointing to reconciliation steps.
-- CLI diagnostics MUST surface drift status and reference `docs/spec-remediations/hybridcore-provisioners-remediations.md` when manual remediation is pending.
+- CLI diagnostics MUST surface drift status and reference `assessments/2025-11-14-remediation-migration/remediations/hybridcore-provisioners-remediations.md` when manual remediation is pending.
 - The metadata propagation diagram in `openspec/specs/hybridcore-provisioners/metadata-propagation.md` SHALL illustrate the required flow.
 
 #### Scenario: Drift between templates and provisioners
@@ -138,4 +138,4 @@ See `specs/hybridcore-provisioners/testing-matrix.md` for required combinations.
 
 ## Open Issues
 
-See `docs/spec-remediations/hybridcore-provisioners-remediations.md`.
+See `assessments/2025-11-14-remediation-migration/remediations/hybridcore-provisioners-remediations.md`.

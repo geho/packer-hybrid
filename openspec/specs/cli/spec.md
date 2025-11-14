@@ -145,7 +145,16 @@ Each command description SHALL cite the corresponding module remediation draft/O
 #### Scenario: Cross-link Open Issues
 
 - **WHEN** the CLI spec describes `build`
-- **THEN** it MUST cite the relevant `docs/spec-remediations/hybridcore-*` draft so readers can trace dependencies.
+- **THEN** it MUST cite the relevant `assessments/2025-11-14-remediation-migration/remediations/hybridcore-*` draft so readers can trace dependencies.
+
+### Requirement: CLI references assessments
+
+CLI documentation (commands, diagnostics, open issues) SHALL point to the active assessment folder for remediation logs instead of the old `docs/spec-remediations` directory.
+
+#### Scenario: Diagnostics link to assessment findings
+
+- **WHEN** CLI documentation references remediation status
+- **THEN** it SHALL cite the active assessment folder (starting with `assessments/2025-11-14-remediation-migration/remediations/*.md`) instead of the retired `docs/spec-remediations/*.md` path.
 
 ### Requirement: Clean Scope Retention
 
@@ -158,13 +167,13 @@ Each command description SHALL cite the corresponding module remediation draft/O
 
 ### Requirement: Open Issues Tracking
 
-The cli spec SHALL keep a `## Open Issues` section pointing to `docs/spec-remediations/cli-remediations.md`. Assessments MUST summarize outstanding gaps per dimension in that doc and cross-reference it from the spec.
+The cli spec SHALL keep a `## Open Issues` section pointing to `assessments/2025-11-14-remediation-migration/remediations/cli-remediations.md`. Assessments MUST summarize outstanding gaps per dimension in that doc and cross-reference it from the spec.
 
 #### Scenario: Remediation linkage
 
 - **WHEN** a spec assessment uncovers deviations for the cli spec
-- **THEN** contributors SHALL update `docs/spec-remediations/cli-remediations.md` and refresh the spec's `## Open Issues` pointer before merging changes.
+- **THEN** contributors SHALL update `assessments/2025-11-14-remediation-migration/remediations/cli-remediations.md` and refresh the spec's `## Open Issues` pointer before merging changes.
 
 ## Open Issues
 
-See `docs/spec-remediations/cli-remediations.md`.
+See `assessments/2025-11-14-remediation-migration/remediations/cli-remediations.md`.

@@ -72,12 +72,12 @@ Spec SHALL describe migration tooling/rollback/audit guidance.
 
 ### Requirement: Open Issues Tracking
 
-The hybridcore-state spec SHALL keep a `## Open Issues` section pointing to `docs/spec-remediations/hybridcore-state-remediations.md`. Assessments MUST summarize outstanding gaps per dimension in that doc and cross-reference it from the spec.
+The hybridcore-state spec SHALL keep a `## Open Issues` section pointing to `assessments/2025-11-14-remediation-migration/remediations/hybridcore-state-remediations.md`. Assessments MUST summarize outstanding gaps per dimension in that doc and cross-reference it from the spec.
 
 #### Scenario: Remediation linkage
 
 - **WHEN** a spec assessment uncovers deviations for the hybridcore-state spec
-- **THEN** contributors SHALL update `docs/spec-remediations/hybridcore-state-remediations.md` and refresh the spec's `## Open Issues` pointer before merging changes.
+- **THEN** contributors SHALL update `assessments/2025-11-14-remediation-migration/remediations/hybridcore-state-remediations.md` and refresh the spec's `## Open Issues` pointer before merging changes.
 
 ### Requirement: State Coordination & Locking
 
@@ -117,4 +117,4 @@ Every snapshot SHALL record provisioning/test provenance (test suite name, times
 
 ## Open Issues
 
-See `docs/spec-remediations/hybridcore-state-remediations.md`.
+See `assessments/2025-11-14-remediation-migration/remediations/hybridcore-state-remediations.md`.

@@ -1,8 +1,0 @@
-/prompts:openspec-proposal Spec migration plan: Outline how to migrate the remaining guidance in openspec/project.md and docs/drafts/InitialIdeas.md into dedicated specs under openspec/specs/ (CLI, hybridcore, templates, provisioning, security). Define sequencing, ownership, review expectations, and acceptance criteria for retiring the temporary draft. References: [specs/cli/spec.md](openspec/specs/cli/spec.md), [specs/hybridcore/spec.md](openspec/specs/hybridcore/spec.md), [specs/templates/spec.md](openspec/specs/templates/spec.md), [specs/provisioning/spec.md](openspec/specs/provisioning/spec.md), [specs/security/spec.md](openspec/specs/security/spec.md)
-
-<!--
-Prompt-Source: docs/proposals/spec-migration-proposal-prompt.md
-Reference: [specs/cli/spec.md](openspec/specs/cli/spec.md)
-Change-Start: refactor-misplaced-specs 2025-11-08T14:30:00Z
-Change-Archived: refactor-misplaced-specs 2025-11-08T14:43:51Z
--->
