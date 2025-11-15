@@ -25,6 +25,8 @@
           "os": { "type": "string" },
           "status": { "type": "string", "enum": ["pending", "validated", "drift", "error"] },
           "manifest": { "type": "string", "description": "Path to manifest file" },
+          "variant": { "type": "string", "description": "Canonical variant ID from specs/templates/spec.md#requirement-variant-naming-layout" },
+          "cache_hash": { "type": "string", "description": "Checksum cache hash used during validation" },
           "issues": { "type": "array", "items": { "type": "string" } }
         }
       }

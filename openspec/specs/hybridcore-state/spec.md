@@ -97,6 +97,15 @@ The spec SHALL define the JSON schema for `state/packer-hybrid.json`, including 
 - **WHEN** `packer-hybrid diag state` runs
 - **THEN** it SHALL read the schema-defined fields, report drift if hashes are missing, and link to remediation guidance.
 
+### Requirement: Template Manifest Hooks
+
+`hybridcore.state` SHALL expose fields consumed by the template checksum cache (see [specs/templates/spec.md#requirement-checksum-cache-lifecycle](openspec/specs/templates/spec.md#requirement-checksum-cache-lifecycle)) so `status`/`publish` can prove variant integrity. Manifests MUST record `variant_id`, `cache_hash`, and `updated_at` for each builder.
+
+#### Scenario: Cache-aware state update
+
+- **WHEN** templates regenerate a manifest
+- **THEN** the state module MUST persist the new `variant_id` and `cache_hash`, enabling CLI validation hooks to compare templates ↔ state deterministically.
+
 ### Requirement: State Schema Versioning & Migration
 
 State files SHALL carry a `schema.version` and `created_with` metadata. The spec SHALL describe upgrade/downgrade behaviour, migration scripts, and tests that fail when the version regresses unexpectedly.

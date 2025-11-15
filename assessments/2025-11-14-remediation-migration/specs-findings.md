@@ -12,7 +12,7 @@
 | info | Hybridcore Sources | remediations/hybridcore-sources-remediations.md | No open topics; references remain for provenance. | Monitor. |
 | info | Hybridcore State | remediations/hybridcore-state-remediations.md | No open topics; drift detection + schema updates complete. | Monitor. |
 | info | Hybridcore Templates (umbrella) | remediations/hybridcore-templates-remediations.md | No open topics; diagrams/tests alignment logged. | Monitor. |
-| high | Templates Spec | remediations/templates-remediations.md | Multiple open topics around variant naming, checksum caches, builder/state integration, script layout, and diagram placement. | Convert each bullet into dedicated OpenSpec proposals. |
+| high | Templates Spec | remediations/templates-remediations.md | Multiple open topics around variant naming, checksum caches, builder/state integration, script layout, and diagram placement. | Covered by OpenSpec change `remediate-templates-open-topics` (implementation in progress). |
 | medium | Templates Spec Template | remediations/templates-spec-remediations.md | Template guidance still describes future structure; ensure future assessments follow the new format referencing this assessment folder. | Keep template updated in this folder. |
 | info | Meta | remediations/meta-remediations.md | No open topics; governance/meta references now centralized. | Monitor. |
 | info | Provisioning | remediations/provisioning-remediations.md | No open topics; log retained for future gaps. | Monitor. |

@@ -49,6 +49,15 @@ Scripts under `templates/scripts/{linux,windows}` SHALL be reusable across platf
 - **WHEN** both Proxmox and vSphere builders need the same hardening script
 - **THEN** they MUST reference the common script via `templatefile("templates/scripts/linux/hardening.sh", ...)` instead of duplicating content.
 
+### Requirement: Script Naming Conventions
+
+Provisioning assets SHALL comply with the template script naming rules described in [specs/templates/spec.md#requirement-script-directory-naming](openspec/specs/templates/spec.md#requirement-script-directory-naming); lint/tests MUST fail when directories deviate from lowercase kebab-case or when unexpected folders are introduced.
+
+#### Scenario: Enforcing naming rules
+
+- **WHEN** a new Windows script directory is added
+- **THEN** CI MUST ensure it matches the canonical naming and path format before provisioning changes can merge.
+
 ### Requirement: Provisioner Testing Matrix
 
 Provisioners SHALL document lint/test expectations per provisioner/platform (Ansible/Puppet/SSH) with CI gate descriptions.

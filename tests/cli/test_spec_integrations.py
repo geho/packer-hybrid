@@ -18,6 +18,10 @@ class CliSpecIntegrationTest(unittest.TestCase):
         self.assertIn("assessments/2025-11-14-remediation-migration/remediations/hybridcore-config-remediations.md", self.text)
         self.assertIn("assessments/2025-11-14-remediation-migration/remediations/hybridcore-templates-remediations.md", self.text)
 
+    def test_template_validation_hooks_referenced(self) -> None:
+        self.assertIn("specs/templates/spec.md#requirement-variant-naming-layout", self.text)
+        self.assertIn("specs/templates/spec.md#requirement-checksum-cache-lifecycle", self.text)
+
 
 if __name__ == "__main__":
     unittest.main()

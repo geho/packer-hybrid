@@ -53,7 +53,7 @@ The optional `wizard`/`tui` SHALL wrap non-interactive commands without divergin
 
 ### Requirement: Diagnostics
 
-`diag` SHALL run the shared redaction hook before bundling, record retention metadata (per the security spec), and emit a manifest listing every scrubbing action.
+`diag` SHALL run the shared redaction hook before bundling, record retention metadata (per the security spec), and emit a manifest listing every scrubbing action. Reference: [specs/security/spec.md#requirement-secret-leak-detection](openspec/specs/security/spec.md#requirement-secret-leak-detection).
 
 #### Scenario: Redacted bundle
 
@@ -71,7 +71,7 @@ Wizard/command diagrams SHALL live in the spec and docs MUST embed those diagram
 
 ### Requirement: Command Catalogue & Arguments
 
-`status|inspect` SHALL emit machine-readable JSON matching a documented schema/version, including field definitions, error codes, and backward-compatibility guidance.
+`status|inspect` SHALL emit machine-readable JSON matching a documented schema/version, including field definitions, error codes, and backward-compatibility guidance. Reference: [docs/cli-status-schema.json](docs/cli-status-schema.json).
 
 #### Scenario: Status schema enforcement
 
@@ -129,6 +129,15 @@ CLI commands `publish`, `clean`, `diag`, `status`, and `wizard` SHALL document r
 - **WHEN** `publish --env prod` runs
 - **THEN** the CLI MUST run drift detection, refuse to continue when manifests mismatch, and exit with code 2 on validation failure.
 
+### Requirement: Template Validation Hooks
+
+`status`, `publish`, and `wizard` SHALL consume the template guidance defined in [specs/templates/spec.md#requirement-variant-naming-layout](openspec/specs/templates/spec.md#requirement-variant-naming-layout) and [#requirement-checksum-cache-lifecycle](openspec/specs/templates/spec.md#requirement-checksum-cache-lifecycle). Validation MUST log which variant table entry and checksum cache were used so operators can trace failures.
+
+#### Scenario: Publishing with cache busting
+
+- **WHEN** `publish --targets vsphere` detects a checksum mismatch
+- **THEN** it MUST cite the affected variant entry, trigger cache invalidation per the template spec, and block the publish until the manifests/state realign.
+
 ### Requirement: Logging & Error Handling (updated)
 
 Logging behaviour SHALL explicitly describe `--verbose`, `--quiet`, and `--json` semantics aligned with `hybridcore-logs` so operators know how to configure diagnostics.
@@ -145,7 +154,7 @@ Each command description SHALL cite the corresponding module remediation draft/O
 #### Scenario: Cross-link Open Issues
 
 - **WHEN** the CLI spec describes `build`
-- **THEN** it MUST cite the relevant `assessments/2025-11-14-remediation-migration/remediations/hybridcore-*` draft so readers can trace dependencies.
+- **THEN** it MUST cite the relevant `assessments/2025-11-14-remediation-migration/remediations/hybridcore-config-remediations.md` and `assessments/2025-11-14-remediation-migration/remediations/hybridcore-templates-remediations.md` entries so readers can trace dependencies.
 
 ### Requirement: CLI references assessments
 
