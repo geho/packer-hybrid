@@ -15,12 +15,12 @@ Assessments SHALL explicitly cover `cli`, every `hybridcore-*` module, `provisio
 
 ### Requirement: Spec Remediation Execution
 
-Remediation workflow MUST list diagrams/tests touched and enforce documentation of those artifacts before archiving.
+Add guidance that remediation execution SHALL cover every `assessments/2025-11-14-remediation-migration/remediations/*.md` file in scope, presenting `/prompts:openspec-proposal|apply|archive` commands for operators to run, and tracking status in tasks.md until all drafts are closed or rolled into follow-up work.
 
-#### Scenario: Diagram/test reporting
+#### Scenario: Operator-driven execution
 
-- **WHEN** `/prompts:openspec-apply <change-id>` completes
-- **THEN** the change description MUST call out any diagrams/tests updated (or explicitly say "none") before archiving.
+- **WHEN** a remediation run starts
+- **THEN** the change owner MUST list each draft, present the appropriate `/prompts:openspec-*` commands for the operator, and update the change checklist only after validation/archival complete.
 
 ### Requirement: Open Issues Tracking
 
