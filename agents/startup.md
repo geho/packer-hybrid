@@ -15,6 +15,10 @@
    - Add any project-specific CLIs as they appear in tasks (package manager, test runner, etc.).
 4. If a tool is missing or outdated, pause and notify the developer so they can provide guidance or updated instructions.
 
+### Tooling References
+- Formatter guides live in `agents/formatters/` (e.g., `prettier.md` for commands such as `npx prettier --version|--check|--write`, `shfmt.md` for shell formatting). Review them before running formatter-related tasks.
+- Linter guides live in `agents/linters/` (e.g., `markdownlint.md`, `pylint.md`, `shellcheck.md`, `mmdc.md`). Consult the relevant file to confirm the expected CLI usage when linting is required.
+
 ## Policy Cheat Sheet for AI Assistants
 
 ### Coding Style (`coding-style.md`)

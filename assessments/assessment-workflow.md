@@ -1,5 +1,7 @@
 # Assessment Workflow
 
+Slash commands load prompt definitions from `${CODEX_HOME:-~/.codex}/prompts/`. Edit the project-owned sources under `agents/prompts/` and run `tools/update-codex-prompts.sh` to sync them into the active Codex home before invoking `/prompts:...` commands.
+
 ## Phase Diagram
 
 ```mermaid
