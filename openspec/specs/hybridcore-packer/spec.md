@@ -105,12 +105,12 @@ Testing SHALL cover:
 
 ### Requirement: Diagnostics & Retention Integration
 
-`hybridcore-packer` SHALL write a log summary (including artifact IDs, manifest path, scrub manifest reference) into `state/packer/logs/<builder>.json` so security/diagnostics tooling can reference it when enforcing retention policies.
+`hybridcore-packer` SHALL write a log summary (including artifact IDs, manifest path, scrub manifest reference) into `logs/packer/<builder>.json` so security/diagnostics tooling can reference the canonical directory defined in `openspec/project.md`.
 
 #### Scenario: Log summary generation
 
 - **WHEN** a build completes
-- **THEN** packer SHALL record the log summary with retention metadata and ensure `diag` bundles include/point to the summary file.
+- **THEN** packer SHALL record the log summary at `logs/packer/<builder>.json` with retention metadata and ensure `diag` bundles include/point to the summary file in that directory.
 
 ## Open Issues
 

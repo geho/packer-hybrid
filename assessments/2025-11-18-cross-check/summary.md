@@ -14,7 +14,7 @@ Status values: `open`, `wip`, `blocked`, `closed`, `archived`, `deferred`. Updat
 | Finding Ref | Suggested Change ID | Status | Last Updated | Notes |
 | ----------- | ------------------- | ------ | ------------ | ----- |
 | specs#1 | `cleanup-hybridcore-packer-duplicate-requirements` | closed | 2025-11-19 | `/prompts:openspec-proposal cleanup-hybridcore-packer-duplicate-requirements --context "assessment 2025-11-18-cross-check specs#1"` (archived 2025-11-19) |
-| specs#2 | `align-hybridcore-packer-log-path` | open | 2025-11-18 | `/prompts:openspec-proposal align-hybridcore-packer-log-path --context "assessment 2025-11-18-cross-check specs#2"` |
+| specs#2 | `align-hybridcore-packer-log-path` | closed | 2025-11-19 | `/prompts:openspec-proposal align-hybridcore-packer-log-path --context "assessment 2025-11-18-cross-check specs#2"` (archived 2025-11-19) |
 | docs#1 | `align-ansible-puppet-opt-in-doc` | open | 2025-11-18 | `/prompts:openspec-proposal align-ansible-puppet-opt-in-doc --context "assessment 2025-11-18-cross-check docs#1"` |
 | docs#2 | `align-puppet-mode-doc` | open | 2025-11-18 | `/prompts:openspec-proposal align-puppet-mode-doc --context "assessment 2025-11-18-cross-check docs#2"` |
 
