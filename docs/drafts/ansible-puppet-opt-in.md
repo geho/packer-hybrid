@@ -13,7 +13,7 @@
 ## Proposed Behaviour
 
 - Introduce a global `provisioners` section that enumerates `ansible`, `puppet`, and `ssh` with `enabled`, `mode`, and `asset_path` keys. CLI flags (e.g., `--enable-puppet`) override that configuration for the current run only.
-- When all structured provisioners are disabled, the CLI MUST emit a warning and run a minimal SSH provisioner set (e.g., shell scripts) defined under `templates/scripts/*`. Operators can opt back into Ansible or Puppet per run.
+- When all structured provisioners are disabled, the CLI MUST fail unless `allow_ssh_fallback=true` is present in config/CLI flags. Only when that flag is enabled SHALL the CLI emit a warning and run the minimal SSH provisioner set (e.g., shell scripts) defined under `templates/scripts/*`. Operators can opt back into Ansible or Puppet per run, but the doc MUST reference the spec rule requiring the flag to be explicit.
 - Validation MUST fail if a provisioner is enabled but required assets are missing or fail linting. The error should cite the provisioner name and path.
 
 ## Open Questions

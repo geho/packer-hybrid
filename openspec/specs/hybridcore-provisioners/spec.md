@@ -4,12 +4,12 @@ Document how `hybridcore.provisioners` structures Ansible/Puppet assets, enforce
 ## Requirements
 ### Requirement: Provisioner Layout & Toggles
 
-`hybridcore-provisioners` SHALL define how provisioning toggles are declared (`configs/<env>/provisioners.yaml`), overridden by CLI flags (e.g., `packer-hybrid build --enable-ansible --disable-puppet`), and persisted into `state/provisioners/<env>/`. When no structured provisioner is enabled, the module SHALL fall back to the SSH script bundle (documented in the provisioning spec) only if `allow_ssh_fallback=true`; otherwise it MUST fail with a descriptive error. Validation SHALL compare requested provisioners against required assets and lint status before mutating state. The requirement SHALL reference the enable/disable diagram in `openspec/specs/hybridcore-provisioners/toggle-flow.md` and log which source (config vs CLI) selected each provisioner.
+`hybridcore-provisioners` SHALL require documentation describing SSH fallback to state explicitly that fallback only occurs when `allow_ssh_fallback=true`, aligning operator guidance with the spec. The requirement text also reiterates that validation enforces the gate.
 
-#### Scenario: Config vs CLI precedence
+#### Scenario: Documented fallback gate
 
-- **WHEN** the config disables Puppet but the CLI passes `--enable-puppet`
-- **THEN** the CLI value SHALL take precedence for that run, the spec MUST require a warning noting the override, and validation SHALL still ensure Puppet assets/lint pass before writing `.pkrvars.hcl` files.
+- **WHEN** writers update guidance for disabling Ansible/Puppet
+- **THEN** the docs SHALL call out the `allow_ssh_fallback` flag so operators do not assume SSH runs automatically.
 
 ### Requirement: Compatibility & Extension Hooks
 
